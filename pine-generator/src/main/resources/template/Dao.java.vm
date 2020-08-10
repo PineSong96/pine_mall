@@ -1,0 +1,35 @@
+package ${package}.${moduleName}.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import ${package}.${moduleName}.entity.${className}Entity;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Dao {
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insertSelective(${className}Entity record);
+
+        ${className}Entity selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(${className}Entity record);
+
+    List<${className}Entity> queryAll${className}(${className}Entity record);
+
+    List<${className}Entity> query${className}sByPage(Map<String, Object> parameter);
+
+    int delete(Integer id);
+
+    int deleteAll(String[] record);
+
+        ${className}Entity query${className}(${className}Entity record);
+
+}

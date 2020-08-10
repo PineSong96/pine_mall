@@ -1,0 +1,140 @@
+package ${package}.${moduleName}.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.pine.common.dto.Page;
+import com.pine.offactive.modules.base.binder.BaseController;
+import com.pine.common.dto.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ${package}.${moduleName}.entity.${className}Entity;
+import ${package}.${moduleName}.service.${className}Service;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Api(value = "${comments}接口", tags = {"${comments}接口" })
+@RestController
+@RequestMapping("${moduleName}/${className}")
+public class ${className}Controller extends BaseController {
+
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+
+    /**
+     * <p>获取全部记录。</p>
+     */
+    @ApiOperation(value = "获取所有${comments}数据", notes = "可以根据条件获取")
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public Result all(${className}Entity record) {
+
+        List<${className}Entity> pp = ${classname}Service.get${className}List(record);
+        return Result.success( pp);
+    }
+
+
+    /**
+     * <p>根据Id。</p>
+     */
+    @ApiOperation(value = "获取${comments}数据", notes = "根据id来获取${comments}详细信息")
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    public Result get${className}Entity(@PathVariable("id") String id) {
+
+            ${className}Entity data = ${classname}Service.get${className}ById(id);
+        return Result.success( data);
+    }
+
+    /**
+     * <p>根据条件获取。</p>
+     */
+    @ApiOperation(value = "获取${comments}数据", notes = "根据条件获取")
+    @RequestMapping(value = "/getOne", method = RequestMethod.GET)
+    public Result getOne(${className}Entity record) {
+
+            ${className}Entity data = ${classname}Service.get${className}(record);
+        return Result.success( data);
+    }
+
+    /**
+     * <p>分页查询。</p>
+     */
+    @ApiOperation(value = "分页获取${comments}数据", notes = "根据条件获取")
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public Result page(Page page, ${className}Entity record) {
+
+        Map<String, Object> result = new HashMap<>();
+
+        List<${className}Entity> pp = ${classname}Service.get${className}ByPage(page, record);
+
+        result.put("page", page);
+        result.put("pp", pp);
+        return Result.success( result);
+    }
+
+    /**
+     * <p>保存。</p>
+     */
+    @ApiOperation(value = "新增一条${comments}数据", notes = "新增一条${comments}数据")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public Result save(@RequestBody ${className}Entity record) {
+
+        boolean num = ${classname}Service.create${className}(record);
+        if (num) {
+            return Result.success( record.getId());
+        }
+        return Result.error("保存异常");
+    }
+
+    /**
+     * <p>更新信息。</p>
+     */
+    @ApiOperation(value = "更新一条${comments}数据", notes = "更新一条${comments}数据")
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public Result update${className}(${className}Entity record) {
+
+        boolean num = ${classname}Service.update${className}(record);
+        if (num) {
+            return Result.success( "保存成功");
+        }
+        return Result.error("保存异常");
+    }
+
+    /**
+     * <p>删除。</p>
+     */
+    @RequestMapping(value = "/del/{id}", method = RequestMethod.DELETE)
+    @ApiOperation(value = "删除一条${comments}数据", notes = "根据Id一条${comments}数据")
+    public Result delete${className}(@PathVariable("id") String id) {
+
+        boolean num = ${classname}Service.delete${className}(id);
+        if (num) {
+            return Result.success( "删除成功");
+        }
+        return Result.error("删除异常");
+    }
+
+    /**
+     * <p>批量删除。</p>
+     */
+    @RequestMapping(value = "/delAll", method = RequestMethod.DELETE)
+    @ApiOperation(value = "删除多条${comments}数据", notes = "删除id的集合多个用英文逗号分隔")
+    public Result del${className}All(@RequestParam(required = true, value = "ids") String ids) {
+
+        boolean num = ${classname}Service.delete${className}All(ids);
+        if (num) {
+            return Result.success( "删除成功");
+        }
+        return Result.error("删除异常");
+    }
+
+}
