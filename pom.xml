@@ -14,7 +14,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>pine_mall</name>
     <description>微服务商城</description>
-
+    <modules>
+        <module>mall-auth</module>
+        <module>mall-common</module>
+        <module>mall-core</module>
+    </modules>
     <properties>
         <skipTests>true</skipTests>
         <docker.host>http://192.168.6.132:2375</docker.host>
@@ -34,10 +38,10 @@
         <aliyun-oss.version>2.5.0</aliyun-oss.version>
         <logstash-logback.version>5.3</logstash-logback.version>
         <admin-starter-server.version>2.1.5</admin-starter-server.version>
-        <tulingmall-common.version>1.0-SNAPSHOT</tulingmall-common.version>
-        <tulingmall-mbg.version>1.0-SNAPSHOT</tulingmall-mbg.version>
-        <tulingmall-security.version>1.0-SNAPSHOT</tulingmall-security.version>
+        <pine-common.version>0.0.1-SNAPSHOT</pine-common.version>
+        <pine-core.version>0.0.1-SNAPSHOT</pine-core.version>
         <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
+
     </properties>
 
     <dependencyManagement>
@@ -50,6 +54,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!-- 通用工具类模块-->
+            <dependency>
+                <groupId>com.mall</groupId>
+                <artifactId>mall-common</artifactId>
+                <version>${pine-common.version}</version>
+            </dependency>
+            <!-- mbg-->
+            <dependency>
+                <groupId>com.mall</groupId>
+                <artifactId>mall-core</artifactId>
+                <version>${pine-core.version}</version>
+            </dependency>
+
             <!--MyBatis分页插件starter-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
@@ -86,11 +103,11 @@
                 <version>${swagger2.version}</version>
             </dependency>
             <!-- MyBatis 生成器 -->
-            <dependency>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-core</artifactId>
-                <version>${mybatis-generator.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis.generator</groupId>-->
+<!--                <artifactId>mybatis-generator-core</artifactId>-->
+<!--                <version>${mybatis-generator.version}</version>-->
+<!--            </dependency>-->
             <!-- MyBatis-->
             <dependency>
                 <groupId>org.mybatis</groupId>
