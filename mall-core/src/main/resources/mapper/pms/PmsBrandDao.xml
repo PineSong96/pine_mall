@@ -44,6 +44,13 @@
 		where id = #{id}
 	</delete>
 
+    <delete id="deleteByIdList" parameterType="java.util.ArrayList">
+        delete from pms_brand
+        where id in
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </delete>
     <!-- 插入数据-->
     <insert id="insertSelective" parameterType="com.mall.core.pms.entity.PmsBrand"
             useGeneratedKeys="true" keyProperty="id">
@@ -102,7 +109,6 @@
         <include refid="Base_Column_List"/>
         from pms_brand
         <where>
-            and del_flag = 'N'
             <if test="id != null and !&quot;&quot;.equals(id)">
                 and id = #{id}
             </if>
@@ -147,7 +153,6 @@
         <include refid="Base_Column_List"/>
         from pms_brand
         <where>
-            and del_flag = 'N'
             <if test="id != null and !&quot;&quot;.equals(id)">
                 and id = #{id}
             </if>
@@ -185,19 +190,5 @@
         LIMIT 1
     </select>
 
-    <update id="delete">
-        UPDATE pms_brand SET del_flag = 'Y'
-        <where>
-            AND id = #{id}
-        </where>
-    </update>
-
-    <update id="deleteByIdList" parameterType="java.util.ArrayList">
-        UPDATE pms_brand SET del_flag = 'Y'
-        WHERE id IN
-        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
-            #{ids}
-        </foreach>
-    </update>
 
 </mapper>

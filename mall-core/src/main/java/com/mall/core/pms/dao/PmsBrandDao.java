@@ -24,8 +24,6 @@ public interface PmsBrandDao {
 
     List<PmsBrand> queryAllPmsBrand(PmsBrand record);
 
-    int delete(Long id);
-
     int deleteByIdList(String[] record);
 
     PmsBrand queryPmsBrand(PmsBrand record);

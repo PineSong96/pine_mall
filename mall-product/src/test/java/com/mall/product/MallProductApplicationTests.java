@@ -1,4 +1,4 @@
-package com.mal.product;
+package com.mall.product;
 
 
 import com.mall.core.pms.dao.PmsBrandDao;
