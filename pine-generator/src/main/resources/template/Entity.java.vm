@@ -6,32 +6,27 @@ package ${package}.${moduleName}.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
+import lombok.*;
 import java.io.Serializable;
 import java.util.Date;
 
 /**
  * ${comments}
- *
+ * @motto ${motto}
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
-@Getter
-@Setter
-@ToString
+@Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@ApiModel(value = "${comments}对象", description = "${comments}对象")
+@ApiModel(value = "${comments}", description = "${comments}")
 public class ${className}Entity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     #foreach ($column in $columns)
-        /**
-         * $column.comments
-         */
+##        /**
+##         * $column.comments
+##         */
         @ApiModelProperty(value = "$column.comments", name = "$column.attrname")
         private $column.attrType $column.attrname;
     #end

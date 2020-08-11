@@ -4,7 +4,7 @@
 <mapper namespace="${package}.${moduleName}.dao.${className}Dao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="${package}.${moduleName}.entity.${className}Entity" id="${classname}Map">
+    <resultMap type="${package}.${moduleName}.entity.${className}" id="${classname}Map">
         #foreach($column in $columns)
             <result column="${column.columnName}" property="${column.attrname}"/>
         #end
@@ -17,21 +17,21 @@
     #end
     </sql>
     <!-- 根据Id查询-->
-    <select id="selectByPrimaryKey" resultMap="${classname}Map" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="${classname}Map" parameterType="java.lang.Long">
         select
         <include refid="Base_Column_List"/>
         from ${tableName}
-        where id = #{id,jdbcType=INTEGER}
+        where id = #{id}
     </select>
 
     <!-- 根据Id删除-->
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteById" parameterType="java.lang.Long">
 		delete from ${tableName}
-		where id = #{id,jdbcType=INTEGER}
+		where id = #{id}
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="${package}.${moduleName}.entity.${className}Entity"
+    <insert id="insertSelective" parameterType="${package}.${moduleName}.entity.${className}"
             useGeneratedKeys="true" keyProperty="id">
         insert into  ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -47,7 +47,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="${package}.${moduleName}.entity.${className}Entity">
+    <update id="updateByPrimaryKeySelective" parameterType="${package}.${moduleName}.entity.${className}">
         update ${tableName}
         <set>
             #foreach($column in $columns)
@@ -56,27 +56,10 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-
-    <!-- 分页查询-->
-    <select id="query${className}sByPage" parameterType="java.util.Map"
-            resultType="${package}.${moduleName}.entity.${className}Entity">
-        select
-        <include refid="Base_Column_List"/>
-        from ${tableName}
-        <where>
-            and del_flag = 'N'
-            #foreach($column in $columns)
-                <if test="record.${column.attrname} != null and !&quot;&quot;.equals(record.${column.attrname})">
-                    and  ${column.columnName} = #{record.${column.attrname}}
-                </if>
-            #end
-        </where>
-        order by id desc
-    </select>
-
+    
     <!-- 全部查询 -->
     <select id="queryAll${className}" parameterType="java.util.Map"
-            resultType="${package}.${moduleName}.entity.${className}Entity">
+            resultMap="${classname}Map">
         select
         <include refid="Base_Column_List"/>
         from ${tableName}
@@ -93,7 +76,7 @@
 
     <!-- 根据条件查询一个 -->
     <select id="query${className}" parameterType="java.util.Map"
-            resultType="${package}.${moduleName}.entity.${className}Entity">
+            resultMap="${classname}Map">
         select
         <include refid="Base_Column_List"/>
         from ${tableName}
@@ -115,7 +98,7 @@
         </where>
     </update>
 
-    <update id="deleteAll" parameterType="java.util.ArrayList">
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
         UPDATE  ${tableName} SET del_flag = 'Y'
         WHERE id IN
         <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">

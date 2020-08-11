@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.pms.dao.PmsBrandDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.pms.entity.PmsBrand" id="pmsBrandMap">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="first_letter" property="firstLetter"/>
+        <result column="sort" property="sort"/>
+        <result column="factory_status" property="factoryStatus"/>
+        <result column="show_status" property="showStatus"/>
+        <result column="product_count" property="productCount"/>
+        <result column="product_comment_count" property="productCommentCount"/>
+        <result column="logo" property="logo"/>
+        <result column="big_pic" property="bigPic"/>
+        <result column="brand_story" property="brandStory"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     name,
+                     first_letter,
+                     sort,
+                     factory_status,
+                     show_status,
+                     product_count,
+                     product_comment_count,
+                     logo,
+                     big_pic,
+                    brand_story         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsBrandMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_brand
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from pms_brand
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.pms.entity.PmsBrand"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into pms_brand
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="firstLetter != null">first_letter,</if>
+            <if test="sort != null">sort,</if>
+            <if test="factoryStatus != null">factory_status,</if>
+            <if test="showStatus != null">show_status,</if>
+            <if test="productCount != null">product_count,</if>
+            <if test="productCommentCount != null">product_comment_count,</if>
+            <if test="logo != null">logo,</if>
+            <if test="bigPic != null">big_pic,</if>
+            <if test="brandStory != null">brand_story,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="firstLetter != null">#{firstLetter},</if>
+            <if test="sort != null">#{sort},</if>
+            <if test="factoryStatus != null">#{factoryStatus},</if>
+            <if test="showStatus != null">#{showStatus},</if>
+            <if test="productCount != null">#{productCount},</if>
+            <if test="productCommentCount != null">#{productCommentCount},</if>
+            <if test="logo != null">#{logo},</if>
+            <if test="bigPic != null">#{bigPic},</if>
+            <if test="brandStory != null">#{brandStory},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.pms.entity.PmsBrand">
+        update pms_brand
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="firstLetter != null">first_letter = #{firstLetter},</if>
+            <if test="sort != null">sort = #{sort},</if>
+            <if test="factoryStatus != null">factory_status = #{factoryStatus},</if>
+            <if test="showStatus != null">show_status = #{showStatus},</if>
+            <if test="productCount != null">product_count = #{productCount},</if>
+            <if test="productCommentCount != null">product_comment_count = #{productCommentCount},</if>
+            <if test="logo != null">logo = #{logo},</if>
+            <if test="bigPic != null">big_pic = #{bigPic},</if>
+            <if test="brandStory != null">brand_story = #{brandStory},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllPmsBrand" parameterType="java.util.Map"
+            resultMap="pmsBrandMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_brand
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="firstLetter != null and !&quot;&quot;.equals(firstLetter)">
+                and first_letter = #{firstLetter}
+            </if>
+            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                and sort = #{sort}
+            </if>
+            <if test="factoryStatus != null and !&quot;&quot;.equals(factoryStatus)">
+                and factory_status = #{factoryStatus}
+            </if>
+            <if test="showStatus != null and !&quot;&quot;.equals(showStatus)">
+                and show_status = #{showStatus}
+            </if>
+            <if test="productCount != null and !&quot;&quot;.equals(productCount)">
+                and product_count = #{productCount}
+            </if>
+            <if test="productCommentCount != null and !&quot;&quot;.equals(productCommentCount)">
+                and product_comment_count = #{productCommentCount}
+            </if>
+            <if test="logo != null and !&quot;&quot;.equals(logo)">
+                and logo = #{logo}
+            </if>
+            <if test="bigPic != null and !&quot;&quot;.equals(bigPic)">
+                and big_pic = #{bigPic}
+            </if>
+            <if test="brandStory != null and !&quot;&quot;.equals(brandStory)">
+                and brand_story = #{brandStory}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsBrand" parameterType="java.util.Map"
+            resultMap="pmsBrandMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_brand
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="firstLetter != null and !&quot;&quot;.equals(firstLetter)">
+                and first_letter = #{firstLetter}
+            </if>
+            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                and sort = #{sort}
+            </if>
+            <if test="factoryStatus != null and !&quot;&quot;.equals(factoryStatus)">
+                and factory_status = #{factoryStatus}
+            </if>
+            <if test="showStatus != null and !&quot;&quot;.equals(showStatus)">
+                and show_status = #{showStatus}
+            </if>
+            <if test="productCount != null and !&quot;&quot;.equals(productCount)">
+                and product_count = #{productCount}
+            </if>
+            <if test="productCommentCount != null and !&quot;&quot;.equals(productCommentCount)">
+                and product_comment_count = #{productCommentCount}
+            </if>
+            <if test="logo != null and !&quot;&quot;.equals(logo)">
+                and logo = #{logo}
+            </if>
+            <if test="bigPic != null and !&quot;&quot;.equals(bigPic)">
+                and big_pic = #{bigPic}
+            </if>
+            <if test="brandStory != null and !&quot;&quot;.equals(brandStory)">
+                and brand_story = #{brandStory}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE pms_brand SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE pms_brand SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

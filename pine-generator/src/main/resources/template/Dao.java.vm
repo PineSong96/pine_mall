@@ -7,29 +7,27 @@ import ${package}.${moduleName}.entity.${className}Entity;
 
 /**
  * ${comments}
- *
+ * @motto ${motto}
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
 public interface ${className}Dao {
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteById(Long id);
 
-    int insertSelective(${className}Entity record);
+    int insertSelective(${className} record);
 
-        ${className}Entity selectByPrimaryKey(Integer id);
+    ${className} selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(${className}Entity record);
+    int updateByPrimaryKeySelective(${className} record);
 
-    List<${className}Entity> queryAll${className}(${className}Entity record);
+    List<${className}> queryAll${className}(${className} record);
 
-    List<${className}Entity> query${className}sByPage(Map<String, Object> parameter);
+    int delete(Long id);
 
-    int delete(Integer id);
+    int deleteByIdList(String[] record);
 
-    int deleteAll(String[] record);
-
-        ${className}Entity query${className}(${className}Entity record);
+    ${className} query${className}(${className} record);
 
 }
