@@ -18,7 +18,6 @@ public class MallProductApplicationTests {
     private PmsBrandDao pmsBrandDao;
     @Test
     public void test(){
-
         List<PmsBrand> pmsBrands = pmsBrandDao.queryAllPmsBrand(null);
     }
 }
