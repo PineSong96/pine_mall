@@ -1,5 +1,6 @@
 package com.mall.auth.properties;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +11,9 @@ import org.springframework.stereotype.Component;
  * @createDate: 2020/8/10
  * @version: 1.0
  */
-//@Data
-//@ConfigurationProperties(value = "pine.jwt")
-public class JwtProperties {
+@Data
+@ConfigurationProperties(value = "pine.jwt")
+public class JwtCAProperties {
     /**
      * 证书名称
      */

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsMemberDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsMember" id="umsMemberMap">
+                    <result column="id" property="id"/>
+                    <result column="member_level_id" property="memberLevelId"/>
+                    <result column="username" property="username"/>
+                    <result column="password" property="password"/>
+                    <result column="nickname" property="nickname"/>
+                    <result column="phone" property="phone"/>
+                    <result column="status" property="status"/>
+                    <result column="create_time" property="createTime"/>
+                    <result column="icon" property="icon"/>
+                    <result column="gender" property="gender"/>
+                    <result column="birthday" property="birthday"/>
+                    <result column="city" property="city"/>
+                    <result column="job" property="job"/>
+                    <result column="personalized_signature" property="personalizedSignature"/>
+                    <result column="source_type" property="sourceType"/>
+                    <result column="integration" property="integration"/>
+                    <result column="growth" property="growth"/>
+                    <result column="luckey_count" property="luckeyCount"/>
+                    <result column="history_integration" property="historyIntegration"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     member_level_id,
+                     username,
+                     password,
+                     nickname,
+                     phone,
+                     status,
+                     create_time,
+                     icon,
+                     gender,
+                     birthday,
+                     city,
+                     job,
+                     personalized_signature,
+                     source_type,
+                     integration,
+                     growth,
+                     luckey_count,
+                    history_integration         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsMemberMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_member
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMember"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  ums_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="memberLevelId != null">  member_level_id,</if>
+                            <if test="username != null">  username,</if>
+                            <if test="password != null">  password,</if>
+                            <if test="nickname != null">  nickname,</if>
+                            <if test="phone != null">  phone,</if>
+                            <if test="status != null">  status,</if>
+                            <if test="createTime != null">  create_time,</if>
+                            <if test="icon != null">  icon,</if>
+                            <if test="gender != null">  gender,</if>
+                            <if test="birthday != null">  birthday,</if>
+                            <if test="city != null">  city,</if>
+                            <if test="job != null">  job,</if>
+                            <if test="personalizedSignature != null">  personalized_signature,</if>
+                            <if test="sourceType != null">  source_type,</if>
+                            <if test="integration != null">  integration,</if>
+                            <if test="growth != null">  growth,</if>
+                            <if test="luckeyCount != null">  luckey_count,</if>
+                            <if test="historyIntegration != null">  history_integration,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="memberLevelId != null">#{memberLevelId},</if>
+                            <if test="username != null">#{username},</if>
+                            <if test="password != null">#{password},</if>
+                            <if test="nickname != null">#{nickname},</if>
+                            <if test="phone != null">#{phone},</if>
+                            <if test="status != null">#{status},</if>
+                            <if test="createTime != null">#{createTime},</if>
+                            <if test="icon != null">#{icon},</if>
+                            <if test="gender != null">#{gender},</if>
+                            <if test="birthday != null">#{birthday},</if>
+                            <if test="city != null">#{city},</if>
+                            <if test="job != null">#{job},</if>
+                            <if test="personalizedSignature != null">#{personalizedSignature},</if>
+                            <if test="sourceType != null">#{sourceType},</if>
+                            <if test="integration != null">#{integration},</if>
+                            <if test="growth != null">#{growth},</if>
+                            <if test="luckeyCount != null">#{luckeyCount},</if>
+                            <if test="historyIntegration != null">#{historyIntegration},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMember">
+        update ums_member
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="memberLevelId != null">member_level_id = #{memberLevelId},</if>
+                            <if test="username != null">username = #{username},</if>
+                            <if test="password != null">password = #{password},</if>
+                            <if test="nickname != null">nickname = #{nickname},</if>
+                            <if test="phone != null">phone = #{phone},</if>
+                            <if test="status != null">status = #{status},</if>
+                            <if test="createTime != null">create_time = #{createTime},</if>
+                            <if test="icon != null">icon = #{icon},</if>
+                            <if test="gender != null">gender = #{gender},</if>
+                            <if test="birthday != null">birthday = #{birthday},</if>
+                            <if test="city != null">city = #{city},</if>
+                            <if test="job != null">job = #{job},</if>
+                            <if test="personalizedSignature != null">personalized_signature = #{personalizedSignature},</if>
+                            <if test="sourceType != null">source_type = #{sourceType},</if>
+                            <if test="integration != null">integration = #{integration},</if>
+                            <if test="growth != null">growth = #{growth},</if>
+                            <if test="luckeyCount != null">luckey_count = #{luckeyCount},</if>
+                            <if test="historyIntegration != null">history_integration = #{historyIntegration},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllUmsMember" parameterType="java.util.Map"
+            resultMap="umsMemberMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="memberLevelId != null and !&quot;&quot;.equals(memberLevelId)">
+                    and  member_level_id = #{memberLevelId}
+                </if>
+                            <if test="username != null and !&quot;&quot;.equals(username)">
+                    and  username = #{username}
+                </if>
+                            <if test="password != null and !&quot;&quot;.equals(password)">
+                    and  password = #{password}
+                </if>
+                            <if test="nickname != null and !&quot;&quot;.equals(nickname)">
+                    and  nickname = #{nickname}
+                </if>
+                            <if test="phone != null and !&quot;&quot;.equals(phone)">
+                    and  phone = #{phone}
+                </if>
+                            <if test="status != null and !&quot;&quot;.equals(status)">
+                    and  status = #{status}
+                </if>
+                            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                    and  create_time = #{createTime}
+                </if>
+                            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                    and  icon = #{icon}
+                </if>
+                            <if test="gender != null and !&quot;&quot;.equals(gender)">
+                    and  gender = #{gender}
+                </if>
+                            <if test="birthday != null and !&quot;&quot;.equals(birthday)">
+                    and  birthday = #{birthday}
+                </if>
+                            <if test="city != null and !&quot;&quot;.equals(city)">
+                    and  city = #{city}
+                </if>
+                            <if test="job != null and !&quot;&quot;.equals(job)">
+                    and  job = #{job}
+                </if>
+                            <if test="personalizedSignature != null and !&quot;&quot;.equals(personalizedSignature)">
+                    and  personalized_signature = #{personalizedSignature}
+                </if>
+                            <if test="sourceType != null and !&quot;&quot;.equals(sourceType)">
+                    and  source_type = #{sourceType}
+                </if>
+                            <if test="integration != null and !&quot;&quot;.equals(integration)">
+                    and  integration = #{integration}
+                </if>
+                            <if test="growth != null and !&quot;&quot;.equals(growth)">
+                    and  growth = #{growth}
+                </if>
+                            <if test="luckeyCount != null and !&quot;&quot;.equals(luckeyCount)">
+                    and  luckey_count = #{luckeyCount}
+                </if>
+                            <if test="historyIntegration != null and !&quot;&quot;.equals(historyIntegration)">
+                    and  history_integration = #{historyIntegration}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsMember" parameterType="java.util.Map"
+            resultMap="umsMemberMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="memberLevelId != null and !&quot;&quot;.equals(memberLevelId)">
+                    and  member_level_id = #{memberLevelId}
+                </if>
+                            <if test="username != null and !&quot;&quot;.equals(username)">
+                    and  username = #{username}
+                </if>
+                            <if test="password != null and !&quot;&quot;.equals(password)">
+                    and  password = #{password}
+                </if>
+                            <if test="nickname != null and !&quot;&quot;.equals(nickname)">
+                    and  nickname = #{nickname}
+                </if>
+                            <if test="phone != null and !&quot;&quot;.equals(phone)">
+                    and  phone = #{phone}
+                </if>
+                            <if test="status != null and !&quot;&quot;.equals(status)">
+                    and  status = #{status}
+                </if>
+                            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                    and  create_time = #{createTime}
+                </if>
+                            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                    and  icon = #{icon}
+                </if>
+                            <if test="gender != null and !&quot;&quot;.equals(gender)">
+                    and  gender = #{gender}
+                </if>
+                            <if test="birthday != null and !&quot;&quot;.equals(birthday)">
+                    and  birthday = #{birthday}
+                </if>
+                            <if test="city != null and !&quot;&quot;.equals(city)">
+                    and  city = #{city}
+                </if>
+                            <if test="job != null and !&quot;&quot;.equals(job)">
+                    and  job = #{job}
+                </if>
+                            <if test="personalizedSignature != null and !&quot;&quot;.equals(personalizedSignature)">
+                    and  personalized_signature = #{personalizedSignature}
+                </if>
+                            <if test="sourceType != null and !&quot;&quot;.equals(sourceType)">
+                    and  source_type = #{sourceType}
+                </if>
+                            <if test="integration != null and !&quot;&quot;.equals(integration)">
+                    and  integration = #{integration}
+                </if>
+                            <if test="growth != null and !&quot;&quot;.equals(growth)">
+                    and  growth = #{growth}
+                </if>
+                            <if test="luckeyCount != null and !&quot;&quot;.equals(luckeyCount)">
+                    and  luckey_count = #{luckeyCount}
+                </if>
+                            <if test="historyIntegration != null and !&quot;&quot;.equals(historyIntegration)">
+                    and  history_integration = #{historyIntegration}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_member SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE  ums_member SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>
