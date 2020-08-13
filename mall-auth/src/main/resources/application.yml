@@ -17,3 +17,9 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:/mapper/**/*Dao.xml
+pine:
+  jwt:
+    keyPairName: jwt.jks
+    keyPairAlias: jwt
+    keyPairSecret: pine7711
+    keyPairStoreSecret: pine7711

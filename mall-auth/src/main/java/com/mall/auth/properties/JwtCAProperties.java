@@ -33,9 +33,4 @@ public class JwtCAProperties {
      * 证书存储密钥
      */
     private String keyPairStoreSecret;
-
-    public static void main(String[] args) {
-        int n = 10 +25+ 30 +25+ 20 +20 +15;
-        System.out.println(n);
-    }
 }
