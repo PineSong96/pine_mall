@@ -126,7 +126,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
      * 授权服务器安全配置
      */
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer security)  {
         //第三方客户端校验token需要带入 clientId 和clientSecret来校验
         security.checkTokenAccess("isAuthenticated()")
                 //来获取我们的tokenKey需要带入clientId,clientSecret

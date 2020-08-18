@@ -27,11 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private MallUserDetailService mallUserDetailService;
 
 
-
     /**
      * 方法实现说明:用于构建用户认证组件,需要传递userDetailsService和密码加密器
-     * @author:smlz
+     *
      * @param auth
+     * @author:smlz
      * @return:
      * @exception:
      * @date:2019/12/25 14:31
@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 设置前台静态资源不拦截
+     *
      * @param web
      * @throws Exception
      */
@@ -51,7 +52,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/assets/**", "/css/**", "/images/**");
     }
-
 
 
     @Bean
@@ -67,6 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("pine"));
         System.out.println(new BCryptPasswordEncoder().encode("test"));
     }
 

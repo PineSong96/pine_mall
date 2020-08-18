@@ -3,6 +3,7 @@ package com.mall.auth.domain;
 import com.mall.core.ums.entity.UmsMember;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 
 /**
@@ -19,6 +20,7 @@ public class MemberDetails implements UserDetails {
     public MemberDetails(UmsMember umsMember) {
         this.umsMember = umsMember;
     }
+
     public UmsMember getUmsMember() {
         return umsMember;
     }
@@ -41,21 +43,22 @@ public class MemberDetails implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        //判断账号是否锁定
+        return umsMember.getStatus() == 1 ? true : false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

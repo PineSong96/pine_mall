@@ -11,7 +11,7 @@
     <artifactId>mall-auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-auth</name>
-    <description>鉴权中心</description>
+    <description>认证中心,专门给网关授权认证的</description>
 
     <properties>
         <java.version>1.8</java.version>
