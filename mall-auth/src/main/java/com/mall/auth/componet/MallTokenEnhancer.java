@@ -30,6 +30,7 @@ public class MallTokenEnhancer implements TokenEnhancer {
         additionalInfo.put("memberId", memberDetails.getUmsMember().getId());
         additionalInfo.put("nickName", memberDetails.getUmsMember().getNickname());
         additionalInfo.put("integration", memberDetails.getUmsMember().getIntegration());
+        additionalInfo.put("warning", "&#35831;&#21247;&#38750;&#27861;&#25805;&#20316;&#65292;&#21542;&#21017;&#23558;&#25215;&#25285;&#30456;&#24212;&#27861;&#24459;&#36131;&#20219");
 
         retMap.put("additionalInfo", additionalInfo);
 

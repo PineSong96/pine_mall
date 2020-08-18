@@ -53,9 +53,10 @@ public class MallUserDetailService implements UserDetailsService {
 
         if(null == umsMember) {
             log.warn("根据用户名没有查询到对应的用户信息:{}",userName);
+            throw new UsernameNotFoundException("用户不存在");
         }
 
-        log.info("根据用户名:{}获取用户登陆信息:{}",userName,umsMember);
+//        log.info("根据用户名:{}获取用户登陆信息:{}",userName,umsMember);
 
         MemberDetails memberDetails = new MemberDetails(umsMember);
 
