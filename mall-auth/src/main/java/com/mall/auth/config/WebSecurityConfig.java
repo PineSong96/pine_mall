@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/assets/**", "/css/**", "/images/**");
     }
 
-
+    //设置密码加密模式
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
