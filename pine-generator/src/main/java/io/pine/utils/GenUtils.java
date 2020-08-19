@@ -49,9 +49,9 @@ public class GenUtils {
         templates.add("template/Entity.java.vm");
         templates.add("template/Dao.java.vm");
         templates.add("template/Dao.xml.vm");
-//        templates.add("template/Service.java.vm");
-//        templates.add("template/ServiceImpl.java.vm");
-//        templates.add("template/Controller.java.vm");
+        templates.add("template/Service.java.vm");
+        templates.add("template/ServiceImpl.java.vm");
+        templates.add("template/Controller.java.vm");
 //        templates.add("template/list.html.vm");
 //        templates.add("template/list.js.vm");
 //        templates.add("template/menu.sql.vm");
@@ -136,6 +136,10 @@ public class GenUtils {
         map.put("moduleName", config.getString("moduleName"));
         map.put("author", config.getString("author"));
         map.put("email", config.getString("email"));
+        map.put("mvcPackage", config.getString("mvcPackage"));
+        map.put("mvcModuleName", config.getString("mvcModuleName"));
+
+
         map.put("datetime", DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
         VelocityContext context = new VelocityContext(map);
 
@@ -148,8 +152,12 @@ public class GenUtils {
             tpl.merge(context, sw);
 
             try {
+                //TODO 可以直接往项目里面写入不需要压缩包
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName"))));
+                zip.putNextEntry(new ZipEntry(getFileName(
+                        template, tableEntity.getClassName(), config.getString("package"), config.getString("moduleName")
+                        , config.getString("mvcPackage"), config.getString("mvcModuleName")
+                )));
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();
@@ -191,8 +199,9 @@ public class GenUtils {
     /**
      * 获取文件名
      */
-    public static String getFileName(String template, String className, String packageName, String moduleName) {
+    public static String getFileName(String template, String className, String packageName, String moduleName, String mvcPackage, String mvcModuleName) {
         String packagePath = "main" + File.separator + "java" + File.separator;
+
         if (StringUtils.isNotBlank(packageName)) {
             packagePath += packageName.replace(".", File.separator) + File.separator + moduleName + File.separator;
         }
@@ -204,22 +213,27 @@ public class GenUtils {
         if (template.contains("Dao.java.vm")) {
             return packagePath + "dao" + File.separator + className + "Dao.java";
         }
-
-//        if (template.contains("Service.java.vm")) {
-//            return packagePath + "service" + File.separator + className + "Service.java";
-//        }
-//
-//        if (template.contains("ServiceImpl.java.vm")) {
-//            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
-//        }
-//
-//        if (template.contains("Controller.java.vm")) {
-//            return packagePath + "controller" + File.separator + className + "Controller.java";
-//        }
-
         if (template.contains("Dao.xml.vm")) {
             return "main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "Dao.xml";
         }
+
+        String mvcPackagePath = "main" + File.separator + "java" + File.separator;
+        if (StringUtils.isNotBlank(mvcPackage)) {
+            mvcPackagePath += mvcPackage.replace(".", File.separator) + File.separator + mvcModuleName + File.separator;
+        }
+
+        if (template.contains("Service.java.vm")) {
+            return mvcPackagePath + "service" + File.separator + className + "Service.java";
+        }
+
+        if (template.contains("ServiceImpl.java.vm")) {
+            return mvcPackagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
+        }
+
+        if (template.contains("Controller.java.vm")) {
+            return mvcPackagePath + "controller" + File.separator + className + "Controller.java";
+        }
+
 
 //        if (template.contains("list.html.vm")) {
 //            return "main" + File.separator + "resources" + File.separator + "templates" + File.separator

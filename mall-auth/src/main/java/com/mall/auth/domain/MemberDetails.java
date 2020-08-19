@@ -25,6 +25,11 @@ public class MemberDetails implements UserDetails {
         return umsMember;
     }
 
+    /**
+     * 返回授予用户的权限
+     *
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //返回当前用户的权限
@@ -41,22 +46,42 @@ public class MemberDetails implements UserDetails {
         return umsMember.getUsername();
     }
 
+    /**
+     * 验证账户是否过期
+     *
+     * @return
+     */
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
+    /**
+     * 验证账户是否锁定
+     *
+     * @return
+     */
     @Override
     public boolean isAccountNonLocked() {
-        //判断账号是否锁定
+
         return umsMember.getStatus() == 1 ? true : false;
     }
 
+    /**
+     * 验证账户密码是否过期
+     *
+     * @return
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
+    /**
+     * 验证账户是否禁用
+     *
+     * @return
+     */
     @Override
     public boolean isEnabled() {
         return true;

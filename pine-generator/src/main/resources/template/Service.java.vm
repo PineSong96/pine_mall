@@ -1,35 +1,30 @@
-package ${package}.${moduleName}.service;
+package ${mvcPackage}.${mvcModuleName}.service;
 
-import ${package}.${moduleName}.entity.${className}Entity;
-
+import ${package}.${moduleName}.entity.${className};
 import java.util.List;
-
-import com.pine.common.dto.Page;
 
 /**
  * ${comments}
- *
+ * @motto ${motto}
  * @author ${author}
  * @email ${email}
  * @date ${datetime}
  */
 public interface ${className}Service {
 
-    List<${className}Entity> get${className}List(${className}Entity record);
+    List<${className}> get${className}List(${className} record);
 
-    List<${className}Entity> get${className}ByPage(Page page, ${className}Entity record);
+    List<${className}> get${className}ByPage(${className} record,Integer pageSize, Integer pageNum);
 
-        ${className}Entity get${className}ById(String id);
+    ${className} get${className}ById(Long id);
 
-        ${className}Entity get${className}(${className}Entity record);
+    ${className} get${className}(${className} record);
 
-    boolean create${className}(${className}Entity record);
+    int create${className}(${className} record);
 
-    boolean delete${className}(String id);
+    int delete(Long id);
 
-    boolean delete${className}All(String ids);
-
-    boolean update${className}(${className}Entity record);
+    int update${className}(${className} record);
 
 }
 
