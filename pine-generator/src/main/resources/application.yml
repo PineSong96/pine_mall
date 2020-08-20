@@ -14,8 +14,8 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.128:3306/pine_mall?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: pine_mall
-    password: YiKbiN2iXJdxxfdT
+    username: root
+    password: pl,okmijn
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss

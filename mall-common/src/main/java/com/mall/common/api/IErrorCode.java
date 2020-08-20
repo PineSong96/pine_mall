@@ -6,7 +6,15 @@ package com.mall.common.api;
  */
 
 public interface IErrorCode {
+    /**
+     * 错误码
+     * @return
+     */
     long getCode();
 
+    /**
+     * 返回消息
+     * @return
+     */
     String getMessage();
 }

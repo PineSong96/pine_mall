@@ -85,7 +85,7 @@ public class MallRestTemplate extends RestTemplate {
         //采取随机的获取一个
         Random random = new Random();
         Integer randomIndex = random.nextInt(serviceInstanceList.size());
-        log.info("随机下标:{}",randomIndex);
+//        log.info("随机下标:{}",randomIndex);
         String serviceIp = serviceInstanceList.get(randomIndex).getUri().toString();
         log.info("随机选举的服务IP:{}",serviceIp);
         String targetSource = httpUrl[1].replace(serviceName,serviceIp);

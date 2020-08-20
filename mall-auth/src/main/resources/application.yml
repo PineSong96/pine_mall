@@ -5,8 +5,8 @@ spring:
     name: mall-auth
   datasource:
     url: jdbc:mysql://192.168.1.128:3306/pine_mall?useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: pine_mall
-    password: YiKbiN2iXJdxxfdT
+    username: root
+    password: pl,okmijn
     druid:
       initial-size: 5 #连接池初始化大小
       min-idle: 10 #最小空闲连接数
