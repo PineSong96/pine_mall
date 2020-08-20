@@ -66,10 +66,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("pine"));
-        System.out.println(new BCryptPasswordEncoder().encode("test"));
-    }
 
 }
 

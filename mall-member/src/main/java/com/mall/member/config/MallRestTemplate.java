@@ -1,4 +1,4 @@
-package com.mall.gateway.component;
+package com.mall.member.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.client.ServiceInstance;
@@ -10,7 +10,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.client.*;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,7 +17,11 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 重写RestTemplate
+ * @vlog: My code, I understand
+ * @desc: 重写RestTemplate
+ * @author:
+ * @createDate: 2020/8/12
+ * @version: 1.0
  */
 @Slf4j
 @Component

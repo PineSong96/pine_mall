@@ -2,15 +2,18 @@ server:
   port: 8888
 spring:
   application:
-    name: tulingmall-gateway
+    name: mall-gateway
   cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.128
     gateway:
       discovery:
         locator:
           lower-case-service-id: true
           enabled: true
       routes:
-        - id: mall-authcenter
+        - id: mall-auth
           uri: lb://mall-authcenter
           predicates:
             - Path=/oauth/**
@@ -18,7 +21,7 @@ spring:
           uri: lb://mall-member
           predicates:
             - Path=/sso/**
-tuling:
+mall:
   gateway:
     shouldSkipUrls:
       - /oauth/**

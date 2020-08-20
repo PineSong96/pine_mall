@@ -149,7 +149,7 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
      * @date:2020/1/22 11:58
      */
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet()  {
         //初始化公钥
         this.publicKey = JwtUtils.genPulicKey(restTemplate);
     }

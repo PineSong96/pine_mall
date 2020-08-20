@@ -21,7 +21,7 @@ public class MDA {
     /**
      * 认证服务器登陆地址
      */
-    public static final String OAUTH_LOGIN_URL = "http://127.0.0.1:8866/oauth/token";
+    public static final String OAUTH_LOGIN_URL = "http://mall-auth/oauth/token";
 
 
     public static final String USER_NAME = "username";

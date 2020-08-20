@@ -1,8 +1,10 @@
 server:
   port: 8866
 spring:
+  application:
+    name: mall-auth
   datasource:
-    url: jdbc:mysql://192.168.2.128:3306/pine_mall?useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://192.168.1.128:3306/pine_mall?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: pine_mall
     password: YiKbiN2iXJdxxfdT
     druid:
@@ -14,6 +16,11 @@ spring:
       stat-view-servlet: #访问监控网页的登录用户名和密码
         login-username: druid
         login-password: druid
+  cloud:
+    nacos:
+      discovery:
+        serverAddr: 192.168.1.128
+
 mybatis:
   mapper-locations:
     - classpath:/mapper/**/*Dao.xml

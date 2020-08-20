@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version: 1.0
  */
 @SpringBootApplication
+
 public class MallProductApplication {
 
     public static void main(String[] args) {
