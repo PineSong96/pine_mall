@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsMemberReceiveAddressDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsMemberReceiveAddress" id="umsMemberReceiveAddressMap">
+        <result column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="name" property="name"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="default_status" property="defaultStatus"/>
+        <result column="post_code" property="postCode"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="region" property="region"/>
+        <result column="detail_address" property="detailAddress"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     member_id,
+                     name,
+                     phone_number,
+                     default_status,
+                     post_code,
+                     province,
+                     city,
+                     region,
+                    detail_address         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsMemberReceiveAddressMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_receive_address
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_member_receive_address
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberReceiveAddress"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_member_receive_address
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="memberId != null">member_id,</if>
+            <if test="name != null">name,</if>
+            <if test="phoneNumber != null">phone_number,</if>
+            <if test="defaultStatus != null">default_status,</if>
+            <if test="postCode != null">post_code,</if>
+            <if test="province != null">province,</if>
+            <if test="city != null">city,</if>
+            <if test="region != null">region,</if>
+            <if test="detailAddress != null">detail_address,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="memberId != null">#{memberId},</if>
+            <if test="name != null">#{name},</if>
+            <if test="phoneNumber != null">#{phoneNumber},</if>
+            <if test="defaultStatus != null">#{defaultStatus},</if>
+            <if test="postCode != null">#{postCode},</if>
+            <if test="province != null">#{province},</if>
+            <if test="city != null">#{city},</if>
+            <if test="region != null">#{region},</if>
+            <if test="detailAddress != null">#{detailAddress},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberReceiveAddress">
+        update ums_member_receive_address
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="memberId != null">member_id = #{memberId},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="phoneNumber != null">phone_number = #{phoneNumber},</if>
+            <if test="defaultStatus != null">default_status = #{defaultStatus},</if>
+            <if test="postCode != null">post_code = #{postCode},</if>
+            <if test="province != null">province = #{province},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="region != null">region = #{region},</if>
+            <if test="detailAddress != null">detail_address = #{detailAddress},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsMemberReceiveAddress" parameterType="java.util.Map"
+            resultMap="umsMemberReceiveAddressMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_receive_address
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="phoneNumber != null and !&quot;&quot;.equals(phoneNumber)">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="defaultStatus != null and !&quot;&quot;.equals(defaultStatus)">
+                and default_status = #{defaultStatus}
+            </if>
+            <if test="postCode != null and !&quot;&quot;.equals(postCode)">
+                and post_code = #{postCode}
+            </if>
+            <if test="province != null and !&quot;&quot;.equals(province)">
+                and province = #{province}
+            </if>
+            <if test="city != null and !&quot;&quot;.equals(city)">
+                and city = #{city}
+            </if>
+            <if test="region != null and !&quot;&quot;.equals(region)">
+                and region = #{region}
+            </if>
+            <if test="detailAddress != null and !&quot;&quot;.equals(detailAddress)">
+                and detail_address = #{detailAddress}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsMemberReceiveAddress" parameterType="java.util.Map"
+            resultMap="umsMemberReceiveAddressMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_receive_address
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="phoneNumber != null and !&quot;&quot;.equals(phoneNumber)">
+                and phone_number = #{phoneNumber}
+            </if>
+            <if test="defaultStatus != null and !&quot;&quot;.equals(defaultStatus)">
+                and default_status = #{defaultStatus}
+            </if>
+            <if test="postCode != null and !&quot;&quot;.equals(postCode)">
+                and post_code = #{postCode}
+            </if>
+            <if test="province != null and !&quot;&quot;.equals(province)">
+                and province = #{province}
+            </if>
+            <if test="city != null and !&quot;&quot;.equals(city)">
+                and city = #{city}
+            </if>
+            <if test="region != null and !&quot;&quot;.equals(region)">
+                and region = #{region}
+            </if>
+            <if test="detailAddress != null and !&quot;&quot;.equals(detailAddress)">
+                and detail_address = #{detailAddress}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_member_receive_address SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_member_receive_address SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

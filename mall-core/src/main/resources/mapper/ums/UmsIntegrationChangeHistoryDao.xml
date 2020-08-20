@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsIntegrationChangeHistoryDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsIntegrationChangeHistory" id="umsIntegrationChangeHistoryMap">
+        <result column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="change_type" property="changeType"/>
+        <result column="change_count" property="changeCount"/>
+        <result column="operate_man" property="operateMan"/>
+        <result column="operate_note" property="operateNote"/>
+        <result column="source_type" property="sourceType"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     member_id,
+                     create_time,
+                     change_type,
+                     change_count,
+                     operate_man,
+                     operate_note,
+                    source_type         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsIntegrationChangeHistoryMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_integration_change_history
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_integration_change_history
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsIntegrationChangeHistory"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_integration_change_history
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="memberId != null">member_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="changeType != null">change_type,</if>
+            <if test="changeCount != null">change_count,</if>
+            <if test="operateMan != null">operate_man,</if>
+            <if test="operateNote != null">operate_note,</if>
+            <if test="sourceType != null">source_type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="memberId != null">#{memberId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="changeType != null">#{changeType},</if>
+            <if test="changeCount != null">#{changeCount},</if>
+            <if test="operateMan != null">#{operateMan},</if>
+            <if test="operateNote != null">#{operateNote},</if>
+            <if test="sourceType != null">#{sourceType},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsIntegrationChangeHistory">
+        update ums_integration_change_history
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="memberId != null">member_id = #{memberId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="changeType != null">change_type = #{changeType},</if>
+            <if test="changeCount != null">change_count = #{changeCount},</if>
+            <if test="operateMan != null">operate_man = #{operateMan},</if>
+            <if test="operateNote != null">operate_note = #{operateNote},</if>
+            <if test="sourceType != null">source_type = #{sourceType},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsIntegrationChangeHistory" parameterType="java.util.Map"
+            resultMap="umsIntegrationChangeHistoryMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_integration_change_history
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="changeType != null and !&quot;&quot;.equals(changeType)">
+                and change_type = #{changeType}
+            </if>
+            <if test="changeCount != null and !&quot;&quot;.equals(changeCount)">
+                and change_count = #{changeCount}
+            </if>
+            <if test="operateMan != null and !&quot;&quot;.equals(operateMan)">
+                and operate_man = #{operateMan}
+            </if>
+            <if test="operateNote != null and !&quot;&quot;.equals(operateNote)">
+                and operate_note = #{operateNote}
+            </if>
+            <if test="sourceType != null and !&quot;&quot;.equals(sourceType)">
+                and source_type = #{sourceType}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsIntegrationChangeHistory" parameterType="java.util.Map"
+            resultMap="umsIntegrationChangeHistoryMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_integration_change_history
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="changeType != null and !&quot;&quot;.equals(changeType)">
+                and change_type = #{changeType}
+            </if>
+            <if test="changeCount != null and !&quot;&quot;.equals(changeCount)">
+                and change_count = #{changeCount}
+            </if>
+            <if test="operateMan != null and !&quot;&quot;.equals(operateMan)">
+                and operate_man = #{operateMan}
+            </if>
+            <if test="operateNote != null and !&quot;&quot;.equals(operateNote)">
+                and operate_note = #{operateNote}
+            </if>
+            <if test="sourceType != null and !&quot;&quot;.equals(sourceType)">
+                and source_type = #{sourceType}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_integration_change_history SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_integration_change_history SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

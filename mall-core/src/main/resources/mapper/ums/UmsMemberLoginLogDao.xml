@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsMemberLoginLogDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsMemberLoginLog" id="umsMemberLoginLogMap">
+        <result column="id" property="id"/>
+        <result column="member_id" property="memberId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="ip" property="ip"/>
+        <result column="city" property="city"/>
+        <result column="login_type" property="loginType"/>
+        <result column="province" property="province"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     member_id,
+                     create_time,
+                     ip,
+                     city,
+                     login_type,
+                    province         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsMemberLoginLogMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_login_log
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_member_login_log
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberLoginLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_member_login_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="memberId != null">member_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="ip != null">ip,</if>
+            <if test="city != null">city,</if>
+            <if test="loginType != null">login_type,</if>
+            <if test="province != null">province,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="memberId != null">#{memberId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="city != null">#{city},</if>
+            <if test="loginType != null">#{loginType},</if>
+            <if test="province != null">#{province},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberLoginLog">
+        update ums_member_login_log
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="memberId != null">member_id = #{memberId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="city != null">city = #{city},</if>
+            <if test="loginType != null">login_type = #{loginType},</if>
+            <if test="province != null">province = #{province},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsMemberLoginLog" parameterType="java.util.Map"
+            resultMap="umsMemberLoginLogMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_login_log
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="ip != null and !&quot;&quot;.equals(ip)">
+                and ip = #{ip}
+            </if>
+            <if test="city != null and !&quot;&quot;.equals(city)">
+                and city = #{city}
+            </if>
+            <if test="loginType != null and !&quot;&quot;.equals(loginType)">
+                and login_type = #{loginType}
+            </if>
+            <if test="province != null and !&quot;&quot;.equals(province)">
+                and province = #{province}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsMemberLoginLog" parameterType="java.util.Map"
+            resultMap="umsMemberLoginLogMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_login_log
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="memberId != null and !&quot;&quot;.equals(memberId)">
+                and member_id = #{memberId}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="ip != null and !&quot;&quot;.equals(ip)">
+                and ip = #{ip}
+            </if>
+            <if test="city != null and !&quot;&quot;.equals(city)">
+                and city = #{city}
+            </if>
+            <if test="loginType != null and !&quot;&quot;.equals(loginType)">
+                and login_type = #{loginType}
+            </if>
+            <if test="province != null and !&quot;&quot;.equals(province)">
+                and province = #{province}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_member_login_log SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_member_login_log SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

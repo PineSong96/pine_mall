@@ -6,8 +6,9 @@ import com.mall.core.ums.entity.UmsMember;
 
 /**
  * 会员表
- * @motto My code
+ *
  * @author Pine
+ * @motto My code
  * @email 771190883@qq.com
  * @date 2020-08-12 15:26:00
  */

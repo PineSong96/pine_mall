@@ -20,16 +20,16 @@ import java.util.Date;
 @Data
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @ApiModel(value = "${comments}", description = "${comments}")
-public class ${className}Entity implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ${className} implements Serializable{
+private static final long serialVersionUID=1L;
 
-    #foreach ($column in $columns)
-##        /**
-##         * $column.comments
-##         */
-        @ApiModelProperty(value = "$column.comments", name = "$column.attrname")
-        private $column.attrType $column.attrname;
-    #end
+#foreach ($column in $columns)
+    ##        /**
+    ##         * $column.comments
+    ##         */
+@ApiModelProperty(value = "$column.comments", name = "$column.attrname")
+private $column.attrType $column.attrname;
+#end
 
 ###foreach ($column in $columns)
 ##	/**

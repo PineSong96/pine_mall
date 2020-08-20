@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsAdminPermissionRelationDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsAdminPermissionRelation" id="umsAdminPermissionRelationMap">
+        <result column="id" property="id"/>
+        <result column="admin_id" property="adminId"/>
+        <result column="permission_id" property="permissionId"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     admin_id,
+                     permission_id,
+                    type         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsAdminPermissionRelationMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin_permission_relation
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_admin_permission_relation
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsAdminPermissionRelation"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_admin_permission_relation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="adminId != null">admin_id,</if>
+            <if test="permissionId != null">permission_id,</if>
+            <if test="type != null">type,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="adminId != null">#{adminId},</if>
+            <if test="permissionId != null">#{permissionId},</if>
+            <if test="type != null">#{type},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsAdminPermissionRelation">
+        update ums_admin_permission_relation
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="adminId != null">admin_id = #{adminId},</if>
+            <if test="permissionId != null">permission_id = #{permissionId},</if>
+            <if test="type != null">type = #{type},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsAdminPermissionRelation" parameterType="java.util.Map"
+            resultMap="umsAdminPermissionRelationMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin_permission_relation
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="adminId != null and !&quot;&quot;.equals(adminId)">
+                and admin_id = #{adminId}
+            </if>
+            <if test="permissionId != null and !&quot;&quot;.equals(permissionId)">
+                and permission_id = #{permissionId}
+            </if>
+            <if test="type != null and !&quot;&quot;.equals(type)">
+                and type = #{type}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsAdminPermissionRelation" parameterType="java.util.Map"
+            resultMap="umsAdminPermissionRelationMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin_permission_relation
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="adminId != null and !&quot;&quot;.equals(adminId)">
+                and admin_id = #{adminId}
+            </if>
+            <if test="permissionId != null and !&quot;&quot;.equals(permissionId)">
+                and permission_id = #{permissionId}
+            </if>
+            <if test="type != null and !&quot;&quot;.equals(type)">
+                and type = #{type}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_admin_permission_relation SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_admin_permission_relation SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

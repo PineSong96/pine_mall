@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsAdminDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsAdmin" id="umsAdminMap">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="icon" property="icon"/>
+        <result column="email" property="email"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="note" property="note"/>
+        <result column="create_time" property="createTime"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     username,
+                     password,
+                     icon,
+                     email,
+                     nick_name,
+                     note,
+                     create_time,
+                     login_time,
+                    status         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsAdminMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_admin
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsAdmin"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_admin
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="username != null">username,</if>
+            <if test="password != null">password,</if>
+            <if test="icon != null">icon,</if>
+            <if test="email != null">email,</if>
+            <if test="nickName != null">nick_name,</if>
+            <if test="note != null">note,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="loginTime != null">login_time,</if>
+            <if test="status != null">status,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="username != null">#{username},</if>
+            <if test="password != null">#{password},</if>
+            <if test="icon != null">#{icon},</if>
+            <if test="email != null">#{email},</if>
+            <if test="nickName != null">#{nickName},</if>
+            <if test="note != null">#{note},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="loginTime != null">#{loginTime},</if>
+            <if test="status != null">#{status},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsAdmin">
+        update ums_admin
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="username != null">username = #{username},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="nickName != null">nick_name = #{nickName},</if>
+            <if test="note != null">note = #{note},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="loginTime != null">login_time = #{loginTime},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsAdmin" parameterType="java.util.Map"
+            resultMap="umsAdminMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="username != null and !&quot;&quot;.equals(username)">
+                and username = #{username}
+            </if>
+            <if test="password != null and !&quot;&quot;.equals(password)">
+                and password = #{password}
+            </if>
+            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                and icon = #{icon}
+            </if>
+            <if test="email != null and !&quot;&quot;.equals(email)">
+                and email = #{email}
+            </if>
+            <if test="nickName != null and !&quot;&quot;.equals(nickName)">
+                and nick_name = #{nickName}
+            </if>
+            <if test="note != null and !&quot;&quot;.equals(note)">
+                and note = #{note}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="loginTime != null and !&quot;&quot;.equals(loginTime)">
+                and login_time = #{loginTime}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsAdmin" parameterType="java.util.Map"
+            resultMap="umsAdminMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_admin
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="username != null and !&quot;&quot;.equals(username)">
+                and username = #{username}
+            </if>
+            <if test="password != null and !&quot;&quot;.equals(password)">
+                and password = #{password}
+            </if>
+            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                and icon = #{icon}
+            </if>
+            <if test="email != null and !&quot;&quot;.equals(email)">
+                and email = #{email}
+            </if>
+            <if test="nickName != null and !&quot;&quot;.equals(nickName)">
+                and nick_name = #{nickName}
+            </if>
+            <if test="note != null and !&quot;&quot;.equals(note)">
+                and note = #{note}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="loginTime != null and !&quot;&quot;.equals(loginTime)">
+                and login_time = #{loginTime}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_admin SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_admin SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsPermissionDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsPermission" id="umsPermissionMap">
+        <result column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="name" property="name"/>
+        <result column="value" property="value"/>
+        <result column="icon" property="icon"/>
+        <result column="type" property="type"/>
+        <result column="uri" property="uri"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="sort" property="sort"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     pid,
+                     name,
+                     value,
+                     icon,
+                     type,
+                     uri,
+                     status,
+                     create_time,
+                    sort         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsPermissionMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_permission
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_permission
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsPermission"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_permission
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="pid != null">pid,</if>
+            <if test="name != null">name,</if>
+            <if test="value != null">value,</if>
+            <if test="icon != null">icon,</if>
+            <if test="type != null">type,</if>
+            <if test="uri != null">uri,</if>
+            <if test="status != null">status,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="sort != null">sort,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="name != null">#{name},</if>
+            <if test="value != null">#{value},</if>
+            <if test="icon != null">#{icon},</if>
+            <if test="type != null">#{type},</if>
+            <if test="uri != null">#{uri},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="sort != null">#{sort},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsPermission">
+        update ums_permission
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="value != null">value = #{value},</if>
+            <if test="icon != null">icon = #{icon},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="uri != null">uri = #{uri},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="sort != null">sort = #{sort},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsPermission" parameterType="java.util.Map"
+            resultMap="umsPermissionMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_permission
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="pid != null and !&quot;&quot;.equals(pid)">
+                and pid = #{pid}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="value != null and !&quot;&quot;.equals(value)">
+                and value = #{value}
+            </if>
+            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                and icon = #{icon}
+            </if>
+            <if test="type != null and !&quot;&quot;.equals(type)">
+                and type = #{type}
+            </if>
+            <if test="uri != null and !&quot;&quot;.equals(uri)">
+                and uri = #{uri}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                and sort = #{sort}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsPermission" parameterType="java.util.Map"
+            resultMap="umsPermissionMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_permission
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="pid != null and !&quot;&quot;.equals(pid)">
+                and pid = #{pid}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="value != null and !&quot;&quot;.equals(value)">
+                and value = #{value}
+            </if>
+            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                and icon = #{icon}
+            </if>
+            <if test="type != null and !&quot;&quot;.equals(type)">
+                and type = #{type}
+            </if>
+            <if test="uri != null and !&quot;&quot;.equals(uri)">
+                and uri = #{uri}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                and create_time = #{createTime}
+            </if>
+            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                and sort = #{sort}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_permission SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_permission SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>

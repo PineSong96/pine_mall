@@ -3,7 +3,7 @@ package ${package}.${moduleName}.dao;
 import java.util.List;
 import java.util.Map;
 
-import ${package}.${moduleName}.entity.${className}Entity;
+import ${package}.${moduleName}.entity.${className};
 
 /**
  * ${comments}

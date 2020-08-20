@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.ums.dao.UmsMemberTagDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.ums.entity.UmsMemberTag" id="umsMemberTagMap">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="finish_order_count" property="finishOrderCount"/>
+        <result column="finish_order_amount" property="finishOrderAmount"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     name,
+                     finish_order_count,
+                    finish_order_amount         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="umsMemberTagMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_tag
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="deleteById" parameterType="java.lang.Long">
+		delete from ums_member_tag
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberTag"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into ums_member_tag
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="name != null">name,</if>
+            <if test="finishOrderCount != null">finish_order_count,</if>
+            <if test="finishOrderAmount != null">finish_order_amount,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="finishOrderCount != null">#{finishOrderCount},</if>
+            <if test="finishOrderAmount != null">#{finishOrderAmount},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberTag">
+        update ums_member_tag
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="finishOrderCount != null">finish_order_count = #{finishOrderCount},</if>
+            <if test="finishOrderAmount != null">finish_order_amount = #{finishOrderAmount},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllUmsMemberTag" parameterType="java.util.Map"
+            resultMap="umsMemberTagMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_tag
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="finishOrderCount != null and !&quot;&quot;.equals(finishOrderCount)">
+                and finish_order_count = #{finishOrderCount}
+            </if>
+            <if test="finishOrderAmount != null and !&quot;&quot;.equals(finishOrderAmount)">
+                and finish_order_amount = #{finishOrderAmount}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryUmsMemberTag" parameterType="java.util.Map"
+            resultMap="umsMemberTagMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ums_member_tag
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="name != null and !&quot;&quot;.equals(name)">
+                and name = #{name}
+            </if>
+            <if test="finishOrderCount != null and !&quot;&quot;.equals(finishOrderCount)">
+                and finish_order_count = #{finishOrderCount}
+            </if>
+            <if test="finishOrderAmount != null and !&quot;&quot;.equals(finishOrderAmount)">
+                and finish_order_amount = #{finishOrderAmount}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+    <update id="delete">
+        UPDATE ums_member_tag SET del_flag = 'Y'
+        <where>
+            AND id = #{id}
+        </where>
+    </update>
+
+    <update id="deleteByIdList" parameterType="java.util.ArrayList">
+        UPDATE ums_member_tag SET del_flag = 'Y'
+        WHERE id IN
+        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
+            #{ids}
+        </foreach>
+    </update>
+
+</mapper>
