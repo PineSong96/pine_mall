@@ -1,7 +1,10 @@
 package com.mall.member.service;
 
+import com.mall.common.api.CommonResult;
 import com.mall.common.api.TokenInfo;
+import com.mall.common.exception.BusinessException;
 import com.mall.core.ums.entity.UmsMember;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -87,6 +90,30 @@ public interface UmsMemberService {
      * @return
      */
     String refreshToken(String token);
+
+    /**
+     * 用户注册
+     */
+    @Transactional
+    CommonResult register(String username, String password, String telephone, String authCode);
+
+    /**
+     * 修改密码
+     */
+    @Transactional
+    CommonResult updatePassword(String telephone, String password, String authCode);
+
+    /**
+     * 获取当前登录会员
+     */
+    UmsMember getCurrentMember();
+
+
+    /**
+     * @return
+     *  otpCode
+     */
+    CommonResult generateAuthCode(String telPhone) throws BusinessException;
 
 }
 

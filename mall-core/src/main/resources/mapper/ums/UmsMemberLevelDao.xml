@@ -43,7 +43,7 @@
     </select>
 
     <!-- 根据Id删除-->
-    <delete id="deleteById" parameterType="java.lang.Long">
+    <delete id="delete" parameterType="java.lang.Long">
 		delete from ums_member_level
 		where id = #{id}
 	</delete>
@@ -112,7 +112,6 @@
         <include refid="Base_Column_List"/>
         from ums_member_level
         <where>
-            and del_flag = 'N'
             <if test="id != null and !&quot;&quot;.equals(id)">
                 and id = #{id}
             </if>
@@ -163,7 +162,6 @@
         <include refid="Base_Column_List"/>
         from ums_member_level
         <where>
-            and del_flag = 'N'
             <if test="id != null and !&quot;&quot;.equals(id)">
                 and id = #{id}
             </if>
@@ -207,19 +205,5 @@
         LIMIT 1
     </select>
 
-    <update id="delete">
-        UPDATE ums_member_level SET del_flag = 'Y'
-        <where>
-            AND id = #{id}
-        </where>
-    </update>
-
-    <update id="deleteByIdList" parameterType="java.util.ArrayList">
-        UPDATE ums_member_level SET del_flag = 'Y'
-        WHERE id IN
-        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
-            #{ids}
-        </foreach>
-    </update>
 
 </mapper>

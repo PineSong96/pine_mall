@@ -31,6 +31,14 @@ spring:
         max-idle: 8 # 连接池中的最大空闲连接
         min-idle: 0 # 连接池中的最小空闲连接
     timeout: 3000ms # 连接超时时间（毫秒）
+# 自定义redis键值
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+      orderId: "portal:orderId:"
+    expire:
+      authCode: 90 # 验证码超期时间
 mybatis:
   mapper-locations:
     - classpath:/mapper/**/*Dao.xml

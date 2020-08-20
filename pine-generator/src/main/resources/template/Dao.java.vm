@@ -12,7 +12,7 @@ import ${package}.${moduleName}.entity.${className};
  */
 public interface ${className}Dao {
 
-    int deleteById(Long id);
+    int delete(Long id);
 
     int insertSelective(${className} record);
 
@@ -22,9 +22,6 @@ public interface ${className}Dao {
 
     List<${className}> queryAll${className}(${className} record);
 
-    int delete(Long id);
-
-    int deleteByIdList(String[] record);
 
     ${className} query${className}(${className} record);
 

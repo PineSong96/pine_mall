@@ -25,7 +25,7 @@
     </select>
 
     <!-- 根据Id删除-->
-    <delete id="deleteById" parameterType="java.lang.Long">
+    <delete id="delete" parameterType="java.lang.Long">
 		delete from ${tableName}
 		where id = #{id}
 	</delete>
@@ -64,7 +64,6 @@
         <include refid="Base_Column_List"/>
         from ${tableName}
         <where>
-            and del_flag = 'N'
             #foreach($column in $columns)
                 <if test="${column.attrname} != null and !&quot;&quot;.equals(${column.attrname})">
                     and  ${column.columnName} = #{${column.attrname}}
@@ -90,20 +89,5 @@
         </where>
         LIMIT 1
     </select>
-
-    <update id="delete">
-        UPDATE ${tableName} SET del_flag = 'Y'
-        <where>
-            AND id = #{id}
-        </where>
-    </update>
-
-    <update id="deleteByIdList" parameterType="java.util.ArrayList">
-        UPDATE  ${tableName} SET del_flag = 'Y'
-        WHERE id IN
-        <foreach item='ids' collection="array" index="index" open="(" separator="," close=")">
-            #{ids}
-        </foreach>
-    </update>
 
 </mapper>

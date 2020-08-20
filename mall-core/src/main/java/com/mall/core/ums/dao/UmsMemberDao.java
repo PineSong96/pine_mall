@@ -14,7 +14,7 @@ import com.mall.core.ums.entity.UmsMember;
  */
 public interface UmsMemberDao {
 
-    int deleteById(Long id);
+    int delete(Long id);
 
     int insertSelective(UmsMember record);
 
@@ -23,10 +23,6 @@ public interface UmsMemberDao {
     int updateByPrimaryKeySelective(UmsMember record);
 
     List<UmsMember> queryAllUmsMember(UmsMember record);
-
-    int delete(Long id);
-
-    int deleteByIdList(String[] record);
 
     UmsMember queryUmsMember(UmsMember record);
 

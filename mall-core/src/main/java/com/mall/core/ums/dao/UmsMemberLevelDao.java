@@ -15,8 +15,6 @@ import com.mall.core.ums.entity.UmsMemberLevel;
  */
 public interface UmsMemberLevelDao {
 
-    int deleteById(Long id);
-
     int insertSelective(UmsMemberLevel record);
 
     UmsMemberLevel selectByPrimaryKey(Long id);
@@ -27,7 +25,6 @@ public interface UmsMemberLevelDao {
 
     int delete(Long id);
 
-    int deleteByIdList(String[] record);
 
     UmsMemberLevel queryUmsMemberLevel(UmsMemberLevel record);
 

@@ -28,6 +28,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--redis依赖配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
         <!--加入nacos的依赖-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -37,6 +43,9 @@
             <groupId>com.mall</groupId>
             <artifactId>mall-core</artifactId>
         </dependency>
+
+
+
     </dependencies>
 
     <build>
