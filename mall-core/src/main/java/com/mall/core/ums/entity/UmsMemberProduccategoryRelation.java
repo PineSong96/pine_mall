@@ -12,7 +12,7 @@ import java.util.Date;
  * 会员与产品分类关系表（用户喜欢的分类）
  *
  * @author Pine
- * @motto My code
+ * @motto My code , I understand
  * @email 771190883@qq.com
  * @date 2020-08-20 15:03:26
  */

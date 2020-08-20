@@ -12,7 +12,7 @@ import java.util.Date;
  * 后台用户和权限关系表(除角色中定义的权限以外的加减权限)
  *
  * @author Pine
- * @motto My code
+ * @motto My code , I understand
  * @email 771190883@qq.com
  * @date 2020-08-20 15:03:26
  */

@@ -9,7 +9,7 @@ import com.mall.core.ums.entity.UmsAdminLoginLog;
  * 后台用户登录日志表
  *
  * @author Pine
- * @motto My code
+ * @motto My code , I understand
  * @email 771190883@qq.com
  * @date 2020-08-20 15:05:28
  */
