@@ -1,6 +1,7 @@
 package com.mall.member.controller;
 
 import java.util.List;
+
 import com.mall.common.api.CommonPage;
 import com.mall.common.api.CommonResult;
 import io.swagger.annotations.Api;
@@ -20,7 +21,7 @@ import com.mall.member.service.UmsMemberService;
 @Api(value = "会员表接口", tags = {"会员表接口" })
 @RestController
 @RequestMapping("ums/UmsMember")
-public class UmsMemberController {
+public class MemberController {
 
     @Autowired
     private UmsMemberService umsMemberService;
@@ -63,9 +64,9 @@ public class UmsMemberController {
     @ApiOperation(value = "分页获取会员表数据", notes = "根据条件获取")
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public CommonResult<CommonPage<UmsMember>> page(UmsMember record,
-                                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
-                                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
-        List<UmsMember> UmsMemberList = umsMemberService.getUmsMemberList(record);
+                                                    @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+                                                    @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum) {
+        List<UmsMember> UmsMemberList = umsMemberService.getUmsMemberByPage(record, pageSize, pageNum);
         return CommonResult.success(CommonPage.restPage(UmsMemberList));
     }
 
@@ -77,7 +78,7 @@ public class UmsMemberController {
     public CommonResult create(@RequestBody UmsMember record) {
 
         int count = umsMemberService.createUmsMember(record);
-        if (count > 0 ) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
@@ -91,7 +92,7 @@ public class UmsMemberController {
     public CommonResult updateUmsMember(@RequestBody UmsMember record) {
 
         int count = umsMemberService.updateUmsMember(record);
-        if (count > 0 ) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
@@ -105,7 +106,7 @@ public class UmsMemberController {
     public CommonResult deleteUmsMember(@PathVariable("id") Long id) {
 
         int count = umsMemberService.delete(id);
-        if (count > 0 ) {
+        if (count > 0) {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
