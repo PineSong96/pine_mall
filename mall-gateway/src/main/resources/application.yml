@@ -11,7 +11,13 @@ spring:
       discovery:
         locator:
           lower-case-service-id: true
-          enabled: true
+#          enabled: true
+#    sentinel:
+#      transport:
+#        dashboard: localhost:8080
+#        port: 8080
+#      # 服务启动直接建立心跳连接
+#      eager: true
       routes:
         - id: mall-auth
           uri: lb://mall-authcenter
@@ -20,7 +26,7 @@ spring:
         - id: mall-member
           uri: lb://mall-member
           predicates:
-            - Path=/sso/**
+            - Path=/sso/**,/member/**
 mall:
   gateway:
     shouldSkipUrls:

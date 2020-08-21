@@ -31,7 +31,7 @@ import java.util.Map;
 @Component
 @Slf4j
 @EnableConfigurationProperties(value = NotAuthUrlProperties.class)
-public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBean {
+public class AuthorizationFilter implements GlobalFilter, Ordered, InitializingBean {
 
     @Autowired
     private MallRestTemplate restTemplate;
@@ -54,7 +54,7 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
         String currentUrl = exchange.getRequest().getURI().getPath();
 
         //1:不需要认证的url
-        if(shouldSkip(currentUrl)) {
+        if (shouldSkip(currentUrl)) {
             //log.info("跳过认证的URL:{}",currentUrl);
             return chain.filter(exchange);
         }
@@ -65,16 +65,16 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
         String authHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
 
         //第二步:判断Authorization的请求头是否为空
-        if(StringUtils.isEmpty(authHeader)) {
+        if (StringUtils.isEmpty(authHeader)) {
             log.warn("需要认证的url,请求头为空");
             throw new GateWayException(ResultCode.AUTHORIZATION_HEADER_IS_EMPTY);
         }
 
         //第三步 校验我们的jwt 若jwt不对或者超时都会抛出异常
-        Claims claims = JwtUtils.validateJwtToken(authHeader,publicKey);
+        Claims claims = JwtUtils.validateJwtToken(authHeader, publicKey);
 
         //第四步 把从jwt中解析出来的 用户登陆信息存储到请求头中
-        ServerWebExchange webExchange = wrapHeader(exchange,claims);
+        ServerWebExchange webExchange = wrapHeader(exchange, claims);
 
         return chain.filter(webExchange);
 
@@ -82,28 +82,32 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
 
     /**
      * 方法实现说明:把我们从jwt解析出来的用户信息存储到请求中
-     * @author:smlz
+     *
      * @param serverWebExchange
      * @param claims
+     * @author:smlz
      * @return: ServerWebExchange
      * @exception:
      * @date:2020/1/22 12:12
      */
-    private ServerWebExchange wrapHeader(ServerWebExchange serverWebExchange,Claims claims) {
+    private ServerWebExchange wrapHeader(ServerWebExchange serverWebExchange, Claims claims) {
 
 //        String loginUserInfo = JSON.toJSONString(claims);
 //
 //        log.info("jwt的用户信息:{}",loginUserInfo);
 
-        String memberId = claims.get("additionalInfo",Map.class).get("memberId").toString();
+        String username = claims.get("user_name", String.class);
 
-        String nickName = claims.get("additionalInfo",Map.class).get("nickName").toString();
+        String memberId = claims.get("additionalInfo", Map.class).get("memberId").toString();
+
+        String nickName = claims.get("additionalInfo", Map.class).get("nickName").toString();
+
 
         //向headers中放文件，记得build
         ServerHttpRequest request = serverWebExchange.getRequest().mutate()
-                .header("username",claims.get("user_name",String.class))
-                .header("memberId",memberId)
-                .header("nickName",nickName)
+                .header("username", username)
+                .header("memberId", memberId)
+                .header("nickName", nickName)
                 .build();
 
         //将现在的request 变成 change对象
@@ -111,13 +115,11 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
     }
 
 
-
-
-
     /**
      * 方法实现说明:不需要授权的路径
-     * @author:smlz
+     *
      * @param currentUrl 当前请求路径
+     * @author:smlz
      * @return:
      * @exception:
      * @date:2019/12/26 13:49
@@ -126,14 +128,13 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
         //路径匹配器(简介SpringMvc拦截器的匹配器)
         //比如/oauth/** 可以匹配/oauth/token    /oauth/check_token等
         PathMatcher pathMatcher = new AntPathMatcher();
-        for(String skipPath:notAuthUrlProperties.getShouldSkipUrls()) {
-            if(pathMatcher.match(skipPath,currentUrl)) {
+        for (String skipPath : notAuthUrlProperties.getShouldSkipUrls()) {
+            if (pathMatcher.match(skipPath, currentUrl)) {
                 return true;
             }
         }
         return false;
     }
-
 
 
     @Override
@@ -143,13 +144,14 @@ public class AuthorizationFilter implements GlobalFilter,Ordered,InitializingBea
 
     /**
      * 方法实现说明:网关服务启动 生成公钥
+     *
      * @author:smlz
      * @return:
      * @exception:
      * @date:2020/1/22 11:58
      */
     @Override
-    public void afterPropertiesSet()  {
+    public void afterPropertiesSet() {
         //初始化公钥
         this.publicKey = JwtUtils.genPulicKey(restTemplate);
     }

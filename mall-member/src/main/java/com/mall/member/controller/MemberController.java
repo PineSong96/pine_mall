@@ -3,7 +3,6 @@ package com.mall.member.controller;
 import com.mall.common.api.CommonResult;
 import com.mall.common.api.TokenInfo;
 import com.mall.common.exception.BusinessException;
-import com.mall.core.ums.entity.UmsMember;
 import com.mall.member.service.UmsMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -61,19 +60,5 @@ public class MemberController {
     @ResponseBody
     public CommonResult getAuthCode(@RequestParam String telephone) throws BusinessException {
         return memberService.generateAuthCode(telephone);
-    }
-
-    /**
-     * <p>更新信息。</p>
-     */
-    @ApiOperation(value = "更新一条会员表数据", notes = "更新一条会员表数据")
-    @RequestMapping(value = "/update", method = RequestMethod.PUT)
-    public CommonResult updateUmsMember(@RequestBody UmsMember record) {
-
-        int count = memberService.updateUmsMember(record);
-        if (count > 0) {
-            return CommonResult.success(count);
-        }
-        return CommonResult.failed();
     }
 }

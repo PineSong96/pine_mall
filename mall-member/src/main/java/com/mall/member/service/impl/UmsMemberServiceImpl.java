@@ -3,11 +3,13 @@ package com.mall.member.service.impl;
 import com.mall.common.api.CommonResult;
 import com.mall.common.api.TokenInfo;
 import com.mall.common.exception.BusinessException;
+import com.mall.common.util.NickNameUtil;
 import com.mall.core.ums.dao.UmsMemberLevelDao;
 import com.mall.core.ums.entity.UmsMemberLevel;
 import com.mall.member.constant.MDA;
 import com.mall.member.service.RedisService;
 import com.mall.member.token.TokenRequestUtil;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -27,8 +29,10 @@ import com.mall.core.ums.dao.UmsMemberDao;
 import com.mall.core.ums.entity.UmsMember;
 import com.mall.member.service.UmsMemberService;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 
 /**
  * 会员表
@@ -102,8 +106,16 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateUmsMember(UmsMember record) {
-        return umsMemberDao.updateByPrimaryKeySelective(record);
+    public int updateUmsMember(UmsMember umsMember) {
+        //部分信息不能修改，全部置空
+        umsMember.setMemberLevelId(null);
+        umsMember.setUsername(null);
+        umsMember.setCreateTime(null);
+        umsMember.setHistoryIntegration(null);
+        umsMember.setIntegration(null);
+        umsMember.setStatus(null);
+        umsMember.setGrowth(null);
+        return umsMemberDao.updateByPrimaryKeySelective(umsMember);
     }
 
     @Override
@@ -179,12 +191,12 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         //没有该用户进行添加操作
         UmsMember umsMember = new UmsMember();
         umsMember.setUsername(username);
+        umsMember.setNickname(NickNameUtil.generateName());
         umsMember.setPhone(telephone);
         umsMember.setPassword(passwordEncoder.encode(password));
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);
         //获取默认会员等级并设置
-
         UmsMemberLevel level = new UmsMemberLevel();
         level.setDefaultStatus(1);
         List<UmsMemberLevel> memberLevelList = umsMemberLevelDao.queryAllUmsMemberLevel(level);
@@ -217,19 +229,24 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         return CommonResult.success(null, "密码修改成功");
     }
 
+    @Override
+    public UmsMember getCurrentMember() {
+        return null;
+    }
+
     //对输入的验证码进行校验
     private boolean verifyAuthCode(String authCode, String telephone) {
         if (StringUtils.isEmpty(authCode)) {
             return false;
         }
-        String realAuthCode = redisService.get(REDIS_KEY_PREFIX_AUTH_CODE + telephone).toString();
+        Object realAuthCode = redisService.get(REDIS_KEY_PREFIX_AUTH_CODE + telephone);
+        if (ObjectUtils.isEmpty(realAuthCode)) {
+            return false;
+        }
         return authCode.equals(realAuthCode);
     }
 
-    @Override
-    public UmsMember getCurrentMember() {
-        return null;
-    }
+
 
 
     @Override
@@ -256,7 +273,6 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         redisService.set(REDIS_KEY_PREFIX_AUTH_CODE + telPhone, sb.toString(), AUTH_CODE_EXPIRE_SECONDS);
         //TODO 发送短信验证码
         return CommonResult.success(sb.toString(), "获取验证码成功");
-
     }
 
 }
