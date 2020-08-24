@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mall.core.sys.dao.SysDictDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.mall.core.sys.entity.SysDict" id="sysDictMap">
+        <result column="id" property="id"/>
+        <result column="pid" property="pid"/>
+        <result column="dataType" property="datatype"/>
+        <result column="dataCode" property="datacode"/>
+        <result column="dataValue" property="datavalue"/>
+        <result column="sortNo" property="sortno"/>
+        <result column="status" property="status"/>
+        <result column="isFixed" property="isfixed"/>
+        <result column="dataDesc" property="datadesc"/>
+        <result column="updateTime" property="updatetime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+                    id,
+                     pid,
+                     dataType,
+                     dataCode,
+                     dataValue,
+                     sortNo,
+                     status,
+                     isFixed,
+                     dataDesc,
+                    updateTime         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="sysDictMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from sys_dict
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.mall.core.sys.entity.SysDict"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into sys_dict
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="pid != null">pid,</if>
+            <if test="datatype != null">dataType,</if>
+            <if test="datacode != null">dataCode,</if>
+            <if test="datavalue != null">dataValue,</if>
+            <if test="sortno != null">sortNo,</if>
+            <if test="status != null">status,</if>
+            <if test="isfixed != null">isFixed,</if>
+            <if test="datadesc != null">dataDesc,</if>
+            <if test="updatetime != null">updateTime,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="datatype != null">#{datatype},</if>
+            <if test="datacode != null">#{datacode},</if>
+            <if test="datavalue != null">#{datavalue},</if>
+            <if test="sortno != null">#{sortno},</if>
+            <if test="status != null">#{status},</if>
+            <if test="isfixed != null">#{isfixed},</if>
+            <if test="datadesc != null">#{datadesc},</if>
+            <if test="updatetime != null">#{updatetime},</if>
+        </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.sys.entity.SysDict">
+        update sys_dict
+        <set>
+            <if test="id != null">id = #{id},</if>
+            <if test="pid != null">pid = #{pid},</if>
+            <if test="datatype != null">dataType = #{datatype},</if>
+            <if test="datacode != null">dataCode = #{datacode},</if>
+            <if test="datavalue != null">dataValue = #{datavalue},</if>
+            <if test="sortno != null">sortNo = #{sortno},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="isfixed != null">isFixed = #{isfixed},</if>
+            <if test="datadesc != null">dataDesc = #{datadesc},</if>
+            <if test="updatetime != null">updateTime = #{updatetime},</if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 全部查询 -->
+    <select id="queryAllSysDict" parameterType="java.util.Map"
+            resultMap="sysDictMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        <where>
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="pid != null and !&quot;&quot;.equals(pid)">
+                and pid = #{pid}
+            </if>
+            <if test="datatype != null and !&quot;&quot;.equals(datatype)">
+                and dataType = #{datatype}
+            </if>
+            <if test="datacode != null and !&quot;&quot;.equals(datacode)">
+                and dataCode = #{datacode}
+            </if>
+            <if test="datavalue != null and !&quot;&quot;.equals(datavalue)">
+                and dataValue = #{datavalue}
+            </if>
+            <if test="sortno != null and !&quot;&quot;.equals(sortno)">
+                and sortNo = #{sortno}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+            <if test="isfixed != null and !&quot;&quot;.equals(isfixed)">
+                and isFixed = #{isfixed}
+            </if>
+            <if test="datadesc != null and !&quot;&quot;.equals(datadesc)">
+                and dataDesc = #{datadesc}
+            </if>
+            <if test="updatetime != null and !&quot;&quot;.equals(updatetime)">
+                and updateTime = #{updatetime}
+            </if>
+        </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="querySysDict" parameterType="java.util.Map"
+            resultMap="sysDictMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dict
+        <where>
+            and del_flag = 'N'
+            <if test="id != null and !&quot;&quot;.equals(id)">
+                and id = #{id}
+            </if>
+            <if test="pid != null and !&quot;&quot;.equals(pid)">
+                and pid = #{pid}
+            </if>
+            <if test="datatype != null and !&quot;&quot;.equals(datatype)">
+                and dataType = #{datatype}
+            </if>
+            <if test="datacode != null and !&quot;&quot;.equals(datacode)">
+                and dataCode = #{datacode}
+            </if>
+            <if test="datavalue != null and !&quot;&quot;.equals(datavalue)">
+                and dataValue = #{datavalue}
+            </if>
+            <if test="sortno != null and !&quot;&quot;.equals(sortno)">
+                and sortNo = #{sortno}
+            </if>
+            <if test="status != null and !&quot;&quot;.equals(status)">
+                and status = #{status}
+            </if>
+            <if test="isfixed != null and !&quot;&quot;.equals(isfixed)">
+                and isFixed = #{isfixed}
+            </if>
+            <if test="datadesc != null and !&quot;&quot;.equals(datadesc)">
+                and dataDesc = #{datadesc}
+            </if>
+            <if test="updatetime != null and !&quot;&quot;.equals(updatetime)">
+                and updateTime = #{updatetime}
+            </if>
+        </where>
+        LIMIT 1
+    </select>
+
+</mapper>
