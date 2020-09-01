@@ -7,8 +7,9 @@ import java.util.List;
 
 /**
  * 系统字典表
- * @motto My code
+ *
  * @author Pine
+ * @motto My code
  * @email 771190883@qq.com
  * @date 2020-08-24 14:32:58
  */
