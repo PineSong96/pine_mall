@@ -6,7 +6,7 @@
     <artifactId>mall-product</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>mall-product</name>
-    <description>商品服务</description>
+    <description>商品广告服务</description>
 
     <parent>
         <groupId>com.mall</groupId>
