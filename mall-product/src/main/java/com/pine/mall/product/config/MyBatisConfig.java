@@ -13,6 +13,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan({"com.mall.core.pms.dao"})
+@MapperScan({"com.pine.mall.core.pms.dao"})
 public class MyBatisConfig {
 }
