@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsPermissionDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsPermissionDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsPermission" id="umsPermissionMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsPermission" id="umsPermissionMap">
         <result column="id" property="id"/>
         <result column="pid" property="pid"/>
         <result column="name" property="name"/>
@@ -43,7 +43,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsPermission"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsPermission"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -73,7 +73,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsPermission">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsPermission">
         update ums_permission
         <set>
             <if test="id != null">id = #{id},</if>

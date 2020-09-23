@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsMemberTaskDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsMemberTaskDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsMemberTask" id="umsMemberTaskMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsMemberTask" id="umsMemberTaskMap">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="growth" property="growth"/>
@@ -33,7 +33,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberTask"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberTask"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_member_task
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -53,7 +53,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberTask">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberTask">
         update ums_member_task
         <set>
             <if test="id != null">id = #{id},</if>

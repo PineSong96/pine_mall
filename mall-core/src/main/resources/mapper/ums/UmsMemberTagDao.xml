@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsMemberTagDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsMemberTagDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsMemberTag" id="umsMemberTagMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsMemberTag" id="umsMemberTagMap">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="finish_order_count" property="finishOrderCount"/>
@@ -31,7 +31,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberTag"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberTag"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_member_tag
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -49,7 +49,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberTag">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberTag">
         update ums_member_tag
         <set>
             <if test="id != null">id = #{id},</if>

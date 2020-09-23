@@ -1,8 +1,8 @@
 package ${package}.${moduleName}.controller;
 
 import java.util.List;
-import com.mall.common.api.CommonPage;
-import com.mall.common.api.CommonResult;
+import CommonPage;
+import CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

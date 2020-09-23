@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsAdminRoleRelationDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsAdminRoleRelationDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsAdminRoleRelation" id="umsAdminRoleRelationMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsAdminRoleRelation" id="umsAdminRoleRelationMap">
         <result column="id" property="id"/>
         <result column="admin_id" property="adminId"/>
         <result column="role_id" property="roleId"/>
@@ -29,7 +29,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsAdminRoleRelation"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsAdminRoleRelation"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_admin_role_relation
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -45,7 +45,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsAdminRoleRelation">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsAdminRoleRelation">
         update ums_admin_role_relation
         <set>
             <if test="id != null">id = #{id},</if>

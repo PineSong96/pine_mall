@@ -9,15 +9,15 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.mall</groupId>
+    <groupId>com.pine</groupId>
     <artifactId>pine_mall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>pine_mall</name>
     <description>微服务商城</description>
     <packaging>pom</packaging>
     <modules>
-        <module>mall-auth</module>
-        <module>mall-common</module>
+        <module>pine-auth</module>
+        <module>pine-common</module>
         <module>mall-core</module>
         <module>mall-member</module>
     </modules>
@@ -43,6 +43,7 @@
         <pine-common.version>0.0.1-SNAPSHOT</pine-common.version>
         <pine-core.version>0.0.1-SNAPSHOT</pine-core.version>
         <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
+        <shardingsphere.version>4.0.1</shardingsphere.version>
 
     </properties>
 
@@ -58,17 +59,33 @@
             </dependency>
             <!-- 通用工具类模块-->
             <dependency>
-                <groupId>com.mall</groupId>
-                <artifactId>mall-common</artifactId>
+                <groupId>com.pine</groupId>
+                <artifactId>pine-common</artifactId>
                 <version>${pine-common.version}</version>
             </dependency>
             <!-- mbg-->
             <dependency>
-                <groupId>com.mall</groupId>
+                <groupId>com.pine</groupId>
                 <artifactId>mall-core</artifactId>
                 <version>${pine-core.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${shardingsphere.version}</version>
+            </dependency>
+            <!-- transaction 2pc XA 2阶段提交分布式事务 -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>sharding-transaction-xa-core</artifactId>
+                <version>${shardingsphere.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>slf4j-api</artifactId>
+                        <groupId>org.slf4j</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
             <!--MyBatis分页插件starter-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>

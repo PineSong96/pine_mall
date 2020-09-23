@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.pms.dao.PmsBrandDao">
+<mapper namespace="com.pine.mall.core.pms.dao.PmsBrandDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.pms.entity.PmsBrand" id="pmsBrandMap">
+    <resultMap type="com.pine.mall.core.pms.entity.PmsBrand" id="pmsBrandMap">
         <result column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="first_letter" property="firstLetter"/>
@@ -52,7 +52,7 @@
         </foreach>
     </delete>
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.pms.entity.PmsBrand"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsBrand"
             useGeneratedKeys="true" keyProperty="id">
         insert into pms_brand
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -84,7 +84,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.pms.entity.PmsBrand">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsBrand">
         update pms_brand
         <set>
             <if test="id != null">id = #{id},</if>

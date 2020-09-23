@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.sys.dao.SysDictDao">
+<mapper namespace="com.pine.mall.core.sys.dao.SysDictDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.sys.entity.SysDict" id="sysDictMap">
+    <resultMap type="com.pine.mall.core.sys.entity.SysDict" id="sysDictMap">
         <result column="id" property="id"/>
         <result column="pid" property="pid"/>
         <result column="dataType" property="datatype"/>
@@ -43,7 +43,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.sys.entity.SysDict"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.sys.entity.SysDict"
             useGeneratedKeys="true" keyProperty="id">
         insert into sys_dict
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -73,7 +73,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.sys.entity.SysDict">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.sys.entity.SysDict">
         update sys_dict
         <set>
             <if test="id != null">id = #{id},</if>

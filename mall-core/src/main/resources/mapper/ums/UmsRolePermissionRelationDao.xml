@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsRolePermissionRelationDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsRolePermissionRelationDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsRolePermissionRelation" id="umsRolePermissionRelationMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsRolePermissionRelation" id="umsRolePermissionRelationMap">
         <result column="id" property="id"/>
         <result column="role_id" property="roleId"/>
         <result column="permission_id" property="permissionId"/>
@@ -29,7 +29,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsRolePermissionRelation"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsRolePermissionRelation"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_role_permission_relation
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -45,7 +45,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsRolePermissionRelation">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsRolePermissionRelation">
         update ums_role_permission_relation
         <set>
             <if test="id != null">id = #{id},</if>

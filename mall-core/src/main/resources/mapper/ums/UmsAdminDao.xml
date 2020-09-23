@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsAdminDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsAdminDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsAdmin" id="umsAdminMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsAdmin" id="umsAdminMap">
         <result column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
@@ -43,7 +43,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsAdmin"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsAdmin"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_admin
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -73,7 +73,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsAdmin">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsAdmin">
         update ums_admin
         <set>
             <if test="id != null">id = #{id},</if>

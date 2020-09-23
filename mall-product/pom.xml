@@ -9,7 +9,7 @@
     <description>商品广告服务</description>
 
     <parent>
-        <groupId>com.mall</groupId>
+        <groupId>com.pine</groupId>
         <artifactId>pine_mall</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
@@ -33,7 +33,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.mall</groupId>
+            <groupId>com.pine</groupId>
             <artifactId>mall-core</artifactId>
         </dependency>
 

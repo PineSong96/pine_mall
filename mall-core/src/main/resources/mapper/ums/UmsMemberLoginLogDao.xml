@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsMemberLoginLogDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsMemberLoginLogDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsMemberLoginLog" id="umsMemberLoginLogMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsMemberLoginLog" id="umsMemberLoginLogMap">
         <result column="id" property="id"/>
         <result column="member_id" property="memberId"/>
         <result column="create_time" property="createTime"/>
@@ -37,7 +37,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsMemberLoginLog"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberLoginLog"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_member_login_log
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -61,7 +61,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsMemberLoginLog">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsMemberLoginLog">
         update ums_member_login_log
         <set>
             <if test="id != null">id = #{id},</if>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mall.core.ums.dao.UmsIntegrationConsumeSettingDao">
+<mapper namespace="com.pine.mall.core.ums.dao.UmsIntegrationConsumeSettingDao">
 
     <!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="com.mall.core.ums.entity.UmsIntegrationConsumeSetting" id="umsIntegrationConsumeSettingMap">
+    <resultMap type="com.pine.mall.core.ums.entity.UmsIntegrationConsumeSetting" id="umsIntegrationConsumeSettingMap">
         <result column="id" property="id"/>
         <result column="deduction_per_amount" property="deductionPerAmount"/>
         <result column="max_percent_per_order" property="maxPercentPerOrder"/>
@@ -33,7 +33,7 @@
 	</delete>
 
     <!-- 插入数据-->
-    <insert id="insertSelective" parameterType="com.mall.core.ums.entity.UmsIntegrationConsumeSetting"
+    <insert id="insertSelective" parameterType="com.pine.mall.core.ums.entity.UmsIntegrationConsumeSetting"
             useGeneratedKeys="true" keyProperty="id">
         insert into ums_integration_consume_setting
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -53,7 +53,7 @@
     </insert>
 
     <!-- 更新数据-->
-    <update id="updateByPrimaryKeySelective" parameterType="com.mall.core.ums.entity.UmsIntegrationConsumeSetting">
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.ums.entity.UmsIntegrationConsumeSetting">
         update ums_integration_consume_setting
         <set>
             <if test="id != null">id = #{id},</if>
