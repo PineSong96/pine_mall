@@ -14,6 +14,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan("com.mall.core.ums.dao")
+@MapperScan("com.pine.mall.core.ums.dao")
 public class MyBatisConfig {
 }
