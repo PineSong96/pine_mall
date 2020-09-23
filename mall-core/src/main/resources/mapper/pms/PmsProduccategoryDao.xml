@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pine.mall.core.pms.dao.PmsProduccategoryDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pine.mall.core.pms.entity.PmsProduccategory" id="pmsProduccategoryMap">
+                    <result column="id" property="id"/>
+                    <result column="parent_id" property="parentId"/>
+                    <result column="name" property="name"/>
+                    <result column="level" property="level"/>
+                    <result column="product_count" property="productCount"/>
+                    <result column="product_unit" property="productUnit"/>
+                    <result column="nav_status" property="navStatus"/>
+                    <result column="show_status" property="showStatus"/>
+                    <result column="sort" property="sort"/>
+                    <result column="icon" property="icon"/>
+                    <result column="keywords" property="keywords"/>
+                    <result column="description" property="description"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     parent_id,
+                     name,
+                     level,
+                     product_count,
+                     product_unit,
+                     nav_status,
+                     show_status,
+                     sort,
+                     icon,
+                     keywords,
+                    description         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsProduccategoryMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_category
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from pms_product_category
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsProduccategory"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  pms_product_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="parentId != null">  parent_id,</if>
+                            <if test="name != null">  name,</if>
+                            <if test="level != null">  level,</if>
+                            <if test="productCount != null">  product_count,</if>
+                            <if test="productUnit != null">  product_unit,</if>
+                            <if test="navStatus != null">  nav_status,</if>
+                            <if test="showStatus != null">  show_status,</if>
+                            <if test="sort != null">  sort,</if>
+                            <if test="icon != null">  icon,</if>
+                            <if test="keywords != null">  keywords,</if>
+                            <if test="description != null">  description,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="parentId != null">#{parentId},</if>
+                            <if test="name != null">#{name},</if>
+                            <if test="level != null">#{level},</if>
+                            <if test="productCount != null">#{productCount},</if>
+                            <if test="productUnit != null">#{productUnit},</if>
+                            <if test="navStatus != null">#{navStatus},</if>
+                            <if test="showStatus != null">#{showStatus},</if>
+                            <if test="sort != null">#{sort},</if>
+                            <if test="icon != null">#{icon},</if>
+                            <if test="keywords != null">#{keywords},</if>
+                            <if test="description != null">#{description},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsProduccategory">
+        update pms_product_category
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="parentId != null">parent_id = #{parentId},</if>
+                            <if test="name != null">name = #{name},</if>
+                            <if test="level != null">level = #{level},</if>
+                            <if test="productCount != null">product_count = #{productCount},</if>
+                            <if test="productUnit != null">product_unit = #{productUnit},</if>
+                            <if test="navStatus != null">nav_status = #{navStatus},</if>
+                            <if test="showStatus != null">show_status = #{showStatus},</if>
+                            <if test="sort != null">sort = #{sort},</if>
+                            <if test="icon != null">icon = #{icon},</if>
+                            <if test="keywords != null">keywords = #{keywords},</if>
+                            <if test="description != null">description = #{description},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllPmsProduccategory" parameterType="java.util.Map"
+            resultMap="pmsProduccategoryMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_category
+        <where>
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="parentId != null and !&quot;&quot;.equals(parentId)">
+                    and  parent_id = #{parentId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="level != null and !&quot;&quot;.equals(level)">
+                    and  level = #{level}
+                </if>
+                            <if test="productCount != null and !&quot;&quot;.equals(productCount)">
+                    and  product_count = #{productCount}
+                </if>
+                            <if test="productUnit != null and !&quot;&quot;.equals(productUnit)">
+                    and  product_unit = #{productUnit}
+                </if>
+                            <if test="navStatus != null and !&quot;&quot;.equals(navStatus)">
+                    and  nav_status = #{navStatus}
+                </if>
+                            <if test="showStatus != null and !&quot;&quot;.equals(showStatus)">
+                    and  show_status = #{showStatus}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                    and  icon = #{icon}
+                </if>
+                            <if test="keywords != null and !&quot;&quot;.equals(keywords)">
+                    and  keywords = #{keywords}
+                </if>
+                            <if test="description != null and !&quot;&quot;.equals(description)">
+                    and  description = #{description}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsProduccategory" parameterType="java.util.Map"
+            resultMap="pmsProduccategoryMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_category
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="parentId != null and !&quot;&quot;.equals(parentId)">
+                    and  parent_id = #{parentId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="level != null and !&quot;&quot;.equals(level)">
+                    and  level = #{level}
+                </if>
+                            <if test="productCount != null and !&quot;&quot;.equals(productCount)">
+                    and  product_count = #{productCount}
+                </if>
+                            <if test="productUnit != null and !&quot;&quot;.equals(productUnit)">
+                    and  product_unit = #{productUnit}
+                </if>
+                            <if test="navStatus != null and !&quot;&quot;.equals(navStatus)">
+                    and  nav_status = #{navStatus}
+                </if>
+                            <if test="showStatus != null and !&quot;&quot;.equals(showStatus)">
+                    and  show_status = #{showStatus}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="icon != null and !&quot;&quot;.equals(icon)">
+                    and  icon = #{icon}
+                </if>
+                            <if test="keywords != null and !&quot;&quot;.equals(keywords)">
+                    and  keywords = #{keywords}
+                </if>
+                            <if test="description != null and !&quot;&quot;.equals(description)">
+                    and  description = #{description}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+</mapper>

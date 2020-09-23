@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pine.mall.core.pms.dao.PmsProducoperateLogDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pine.mall.core.pms.entity.PmsProducoperateLog" id="pmsProducoperateLogMap">
+                    <result column="id" property="id"/>
+                    <result column="product_id" property="productId"/>
+                    <result column="price_old" property="priceOld"/>
+                    <result column="price_new" property="priceNew"/>
+                    <result column="sale_price_old" property="salePriceOld"/>
+                    <result column="sale_price_new" property="salePriceNew"/>
+                    <result column="gift_point_old" property="giftPointOld"/>
+                    <result column="gift_point_new" property="giftPointNew"/>
+                    <result column="use_point_limit_old" property="usePointLimitOld"/>
+                    <result column="use_point_limit_new" property="usePointLimitNew"/>
+                    <result column="operate_man" property="operateMan"/>
+                    <result column="create_time" property="createTime"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     product_id,
+                     price_old,
+                     price_new,
+                     sale_price_old,
+                     sale_price_new,
+                     gift_point_old,
+                     gift_point_new,
+                     use_point_limit_old,
+                     use_point_limit_new,
+                     operate_man,
+                    create_time         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsProducoperateLogMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_operate_log
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from pms_product_operate_log
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsProducoperateLog"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  pms_product_operate_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="productId != null">  product_id,</if>
+                            <if test="priceOld != null">  price_old,</if>
+                            <if test="priceNew != null">  price_new,</if>
+                            <if test="salePriceOld != null">  sale_price_old,</if>
+                            <if test="salePriceNew != null">  sale_price_new,</if>
+                            <if test="giftPointOld != null">  gift_point_old,</if>
+                            <if test="giftPointNew != null">  gift_point_new,</if>
+                            <if test="usePointLimitOld != null">  use_point_limit_old,</if>
+                            <if test="usePointLimitNew != null">  use_point_limit_new,</if>
+                            <if test="operateMan != null">  operate_man,</if>
+                            <if test="createTime != null">  create_time,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="productId != null">#{productId},</if>
+                            <if test="priceOld != null">#{priceOld},</if>
+                            <if test="priceNew != null">#{priceNew},</if>
+                            <if test="salePriceOld != null">#{salePriceOld},</if>
+                            <if test="salePriceNew != null">#{salePriceNew},</if>
+                            <if test="giftPointOld != null">#{giftPointOld},</if>
+                            <if test="giftPointNew != null">#{giftPointNew},</if>
+                            <if test="usePointLimitOld != null">#{usePointLimitOld},</if>
+                            <if test="usePointLimitNew != null">#{usePointLimitNew},</if>
+                            <if test="operateMan != null">#{operateMan},</if>
+                            <if test="createTime != null">#{createTime},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsProducoperateLog">
+        update pms_product_operate_log
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="productId != null">product_id = #{productId},</if>
+                            <if test="priceOld != null">price_old = #{priceOld},</if>
+                            <if test="priceNew != null">price_new = #{priceNew},</if>
+                            <if test="salePriceOld != null">sale_price_old = #{salePriceOld},</if>
+                            <if test="salePriceNew != null">sale_price_new = #{salePriceNew},</if>
+                            <if test="giftPointOld != null">gift_point_old = #{giftPointOld},</if>
+                            <if test="giftPointNew != null">gift_point_new = #{giftPointNew},</if>
+                            <if test="usePointLimitOld != null">use_point_limit_old = #{usePointLimitOld},</if>
+                            <if test="usePointLimitNew != null">use_point_limit_new = #{usePointLimitNew},</if>
+                            <if test="operateMan != null">operate_man = #{operateMan},</if>
+                            <if test="createTime != null">create_time = #{createTime},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllPmsProducoperateLog" parameterType="java.util.Map"
+            resultMap="pmsProducoperateLogMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_operate_log
+        <where>
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productId != null and !&quot;&quot;.equals(productId)">
+                    and  product_id = #{productId}
+                </if>
+                            <if test="priceOld != null and !&quot;&quot;.equals(priceOld)">
+                    and  price_old = #{priceOld}
+                </if>
+                            <if test="priceNew != null and !&quot;&quot;.equals(priceNew)">
+                    and  price_new = #{priceNew}
+                </if>
+                            <if test="salePriceOld != null and !&quot;&quot;.equals(salePriceOld)">
+                    and  sale_price_old = #{salePriceOld}
+                </if>
+                            <if test="salePriceNew != null and !&quot;&quot;.equals(salePriceNew)">
+                    and  sale_price_new = #{salePriceNew}
+                </if>
+                            <if test="giftPointOld != null and !&quot;&quot;.equals(giftPointOld)">
+                    and  gift_point_old = #{giftPointOld}
+                </if>
+                            <if test="giftPointNew != null and !&quot;&quot;.equals(giftPointNew)">
+                    and  gift_point_new = #{giftPointNew}
+                </if>
+                            <if test="usePointLimitOld != null and !&quot;&quot;.equals(usePointLimitOld)">
+                    and  use_point_limit_old = #{usePointLimitOld}
+                </if>
+                            <if test="usePointLimitNew != null and !&quot;&quot;.equals(usePointLimitNew)">
+                    and  use_point_limit_new = #{usePointLimitNew}
+                </if>
+                            <if test="operateMan != null and !&quot;&quot;.equals(operateMan)">
+                    and  operate_man = #{operateMan}
+                </if>
+                            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                    and  create_time = #{createTime}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsProducoperateLog" parameterType="java.util.Map"
+            resultMap="pmsProducoperateLogMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_operate_log
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productId != null and !&quot;&quot;.equals(productId)">
+                    and  product_id = #{productId}
+                </if>
+                            <if test="priceOld != null and !&quot;&quot;.equals(priceOld)">
+                    and  price_old = #{priceOld}
+                </if>
+                            <if test="priceNew != null and !&quot;&quot;.equals(priceNew)">
+                    and  price_new = #{priceNew}
+                </if>
+                            <if test="salePriceOld != null and !&quot;&quot;.equals(salePriceOld)">
+                    and  sale_price_old = #{salePriceOld}
+                </if>
+                            <if test="salePriceNew != null and !&quot;&quot;.equals(salePriceNew)">
+                    and  sale_price_new = #{salePriceNew}
+                </if>
+                            <if test="giftPointOld != null and !&quot;&quot;.equals(giftPointOld)">
+                    and  gift_point_old = #{giftPointOld}
+                </if>
+                            <if test="giftPointNew != null and !&quot;&quot;.equals(giftPointNew)">
+                    and  gift_point_new = #{giftPointNew}
+                </if>
+                            <if test="usePointLimitOld != null and !&quot;&quot;.equals(usePointLimitOld)">
+                    and  use_point_limit_old = #{usePointLimitOld}
+                </if>
+                            <if test="usePointLimitNew != null and !&quot;&quot;.equals(usePointLimitNew)">
+                    and  use_point_limit_new = #{usePointLimitNew}
+                </if>
+                            <if test="operateMan != null and !&quot;&quot;.equals(operateMan)">
+                    and  operate_man = #{operateMan}
+                </if>
+                            <if test="createTime != null and !&quot;&quot;.equals(createTime)">
+                    and  create_time = #{createTime}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+</mapper>

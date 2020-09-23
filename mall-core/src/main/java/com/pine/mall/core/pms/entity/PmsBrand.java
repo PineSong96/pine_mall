@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
+
 import java.io.Serializable;
 
 
@@ -47,7 +48,7 @@ public class PmsBrand implements Serializable {
     public static void main(String[] args) {
         String n = "adsadasd";
         char[] chars = n.toCharArray();
-        for (char c:chars){
+        for (char c : chars) {
 
             System.out.println(c);
         }

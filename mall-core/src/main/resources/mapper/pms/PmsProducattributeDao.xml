@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pine.mall.core.pms.dao.PmsProducattributeDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pine.mall.core.pms.entity.PmsProducattribute" id="pmsProducattributeMap">
+                    <result column="id" property="id"/>
+                    <result column="product_attribute_category_id" property="productAttributeCategoryId"/>
+                    <result column="name" property="name"/>
+                    <result column="select_type" property="selectType"/>
+                    <result column="input_type" property="inputType"/>
+                    <result column="input_list" property="inputList"/>
+                    <result column="sort" property="sort"/>
+                    <result column="filter_type" property="filterType"/>
+                    <result column="search_type" property="searchType"/>
+                    <result column="related_status" property="relatedStatus"/>
+                    <result column="hand_add_status" property="handAddStatus"/>
+                    <result column="type" property="type"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     product_attribute_category_id,
+                     name,
+                     select_type,
+                     input_type,
+                     input_list,
+                     sort,
+                     filter_type,
+                     search_type,
+                     related_status,
+                     hand_add_status,
+                    type         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsProducattributeMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_attribute
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from pms_product_attribute
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsProducattribute"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  pms_product_attribute
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="productAttributeCategoryId != null">  product_attribute_category_id,</if>
+                            <if test="name != null">  name,</if>
+                            <if test="selectType != null">  select_type,</if>
+                            <if test="inputType != null">  input_type,</if>
+                            <if test="inputList != null">  input_list,</if>
+                            <if test="sort != null">  sort,</if>
+                            <if test="filterType != null">  filter_type,</if>
+                            <if test="searchType != null">  search_type,</if>
+                            <if test="relatedStatus != null">  related_status,</if>
+                            <if test="handAddStatus != null">  hand_add_status,</if>
+                            <if test="type != null">  type,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="productAttributeCategoryId != null">#{productAttributeCategoryId},</if>
+                            <if test="name != null">#{name},</if>
+                            <if test="selectType != null">#{selectType},</if>
+                            <if test="inputType != null">#{inputType},</if>
+                            <if test="inputList != null">#{inputList},</if>
+                            <if test="sort != null">#{sort},</if>
+                            <if test="filterType != null">#{filterType},</if>
+                            <if test="searchType != null">#{searchType},</if>
+                            <if test="relatedStatus != null">#{relatedStatus},</if>
+                            <if test="handAddStatus != null">#{handAddStatus},</if>
+                            <if test="type != null">#{type},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsProducattribute">
+        update pms_product_attribute
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="productAttributeCategoryId != null">product_attribute_category_id = #{productAttributeCategoryId},</if>
+                            <if test="name != null">name = #{name},</if>
+                            <if test="selectType != null">select_type = #{selectType},</if>
+                            <if test="inputType != null">input_type = #{inputType},</if>
+                            <if test="inputList != null">input_list = #{inputList},</if>
+                            <if test="sort != null">sort = #{sort},</if>
+                            <if test="filterType != null">filter_type = #{filterType},</if>
+                            <if test="searchType != null">search_type = #{searchType},</if>
+                            <if test="relatedStatus != null">related_status = #{relatedStatus},</if>
+                            <if test="handAddStatus != null">hand_add_status = #{handAddStatus},</if>
+                            <if test="type != null">type = #{type},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllPmsProducattribute" parameterType="java.util.Map"
+            resultMap="pmsProducattributeMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_attribute
+        <where>
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productAttributeCategoryId != null and !&quot;&quot;.equals(productAttributeCategoryId)">
+                    and  product_attribute_category_id = #{productAttributeCategoryId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="selectType != null and !&quot;&quot;.equals(selectType)">
+                    and  select_type = #{selectType}
+                </if>
+                            <if test="inputType != null and !&quot;&quot;.equals(inputType)">
+                    and  input_type = #{inputType}
+                </if>
+                            <if test="inputList != null and !&quot;&quot;.equals(inputList)">
+                    and  input_list = #{inputList}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="filterType != null and !&quot;&quot;.equals(filterType)">
+                    and  filter_type = #{filterType}
+                </if>
+                            <if test="searchType != null and !&quot;&quot;.equals(searchType)">
+                    and  search_type = #{searchType}
+                </if>
+                            <if test="relatedStatus != null and !&quot;&quot;.equals(relatedStatus)">
+                    and  related_status = #{relatedStatus}
+                </if>
+                            <if test="handAddStatus != null and !&quot;&quot;.equals(handAddStatus)">
+                    and  hand_add_status = #{handAddStatus}
+                </if>
+                            <if test="type != null and !&quot;&quot;.equals(type)">
+                    and  type = #{type}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsProducattribute" parameterType="java.util.Map"
+            resultMap="pmsProducattributeMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_attribute
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productAttributeCategoryId != null and !&quot;&quot;.equals(productAttributeCategoryId)">
+                    and  product_attribute_category_id = #{productAttributeCategoryId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="selectType != null and !&quot;&quot;.equals(selectType)">
+                    and  select_type = #{selectType}
+                </if>
+                            <if test="inputType != null and !&quot;&quot;.equals(inputType)">
+                    and  input_type = #{inputType}
+                </if>
+                            <if test="inputList != null and !&quot;&quot;.equals(inputList)">
+                    and  input_list = #{inputList}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="filterType != null and !&quot;&quot;.equals(filterType)">
+                    and  filter_type = #{filterType}
+                </if>
+                            <if test="searchType != null and !&quot;&quot;.equals(searchType)">
+                    and  search_type = #{searchType}
+                </if>
+                            <if test="relatedStatus != null and !&quot;&quot;.equals(relatedStatus)">
+                    and  related_status = #{relatedStatus}
+                </if>
+                            <if test="handAddStatus != null and !&quot;&quot;.equals(handAddStatus)">
+                    and  hand_add_status = #{handAddStatus}
+                </if>
+                            <if test="type != null and !&quot;&quot;.equals(type)">
+                    and  type = #{type}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+</mapper>

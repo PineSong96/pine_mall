@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pine.mall.core.pms.dao.PmsProducladderDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pine.mall.core.pms.entity.PmsProducladder" id="pmsProducladderMap">
+                    <result column="id" property="id"/>
+                    <result column="product_id" property="productId"/>
+                    <result column="count" property="count"/>
+                    <result column="discount" property="discount"/>
+                    <result column="price" property="price"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     product_id,
+                     count,
+                     discount,
+                    price         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsProducladderMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_ladder
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from pms_product_ladder
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsProducladder"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  pms_product_ladder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="productId != null">  product_id,</if>
+                            <if test="count != null">  count,</if>
+                            <if test="discount != null">  discount,</if>
+                            <if test="price != null">  price,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="productId != null">#{productId},</if>
+                            <if test="count != null">#{count},</if>
+                            <if test="discount != null">#{discount},</if>
+                            <if test="price != null">#{price},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsProducladder">
+        update pms_product_ladder
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="productId != null">product_id = #{productId},</if>
+                            <if test="count != null">count = #{count},</if>
+                            <if test="discount != null">discount = #{discount},</if>
+                            <if test="price != null">price = #{price},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllPmsProducladder" parameterType="java.util.Map"
+            resultMap="pmsProducladderMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_ladder
+        <where>
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productId != null and !&quot;&quot;.equals(productId)">
+                    and  product_id = #{productId}
+                </if>
+                            <if test="count != null and !&quot;&quot;.equals(count)">
+                    and  count = #{count}
+                </if>
+                            <if test="discount != null and !&quot;&quot;.equals(discount)">
+                    and  discount = #{discount}
+                </if>
+                            <if test="price != null and !&quot;&quot;.equals(price)">
+                    and  price = #{price}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsProducladder" parameterType="java.util.Map"
+            resultMap="pmsProducladderMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product_ladder
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="productId != null and !&quot;&quot;.equals(productId)">
+                    and  product_id = #{productId}
+                </if>
+                            <if test="count != null and !&quot;&quot;.equals(count)">
+                    and  count = #{count}
+                </if>
+                            <if test="discount != null and !&quot;&quot;.equals(discount)">
+                    and  discount = #{discount}
+                </if>
+                            <if test="price != null and !&quot;&quot;.equals(price)">
+                    and  price = #{price}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+</mapper>

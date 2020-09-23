@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pine.mall.core.pms.dao.PmsProductDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.pine.mall.core.pms.entity.PmsProduct" id="pmsProductMap">
+                    <result column="id" property="id"/>
+                    <result column="brand_id" property="brandId"/>
+                    <result column="product_category_id" property="productCategoryId"/>
+                    <result column="feight_template_id" property="feightTemplateId"/>
+                    <result column="product_attribute_category_id" property="productAttributeCategoryId"/>
+                    <result column="name" property="name"/>
+                    <result column="pic" property="pic"/>
+                    <result column="product_sn" property="productSn"/>
+                    <result column="delete_status" property="deleteStatus"/>
+                    <result column="publish_status" property="publishStatus"/>
+                    <result column="new_status" property="newStatus"/>
+                    <result column="recommand_status" property="recommandStatus"/>
+                    <result column="verify_status" property="verifyStatus"/>
+                    <result column="sort" property="sort"/>
+                    <result column="sale" property="sale"/>
+                    <result column="price" property="price"/>
+                    <result column="promotion_price" property="promotionPrice"/>
+                    <result column="gift_growth" property="giftGrowth"/>
+                    <result column="gift_point" property="giftPoint"/>
+                    <result column="use_point_limit" property="usePointLimit"/>
+                    <result column="sub_title" property="subTitle"/>
+                    <result column="description" property="description"/>
+                    <result column="original_price" property="originalPrice"/>
+                    <result column="stock" property="stock"/>
+                    <result column="low_stock" property="lowStock"/>
+                    <result column="unit" property="unit"/>
+                    <result column="weight" property="weight"/>
+                    <result column="preview_status" property="previewStatus"/>
+                    <result column="service_ids" property="serviceIds"/>
+                    <result column="keywords" property="keywords"/>
+                    <result column="note" property="note"/>
+                    <result column="album_pics" property="albumPics"/>
+                    <result column="detail_title" property="detailTitle"/>
+                    <result column="detail_desc" property="detailDesc"/>
+                    <result column="detail_html" property="detailHtml"/>
+                    <result column="detail_mobile_html" property="detailMobileHtml"/>
+                    <result column="promotion_start_time" property="promotionStartTime"/>
+                    <result column="promotion_end_time" property="promotionEndTime"/>
+                    <result column="promotion_per_limit" property="promotionPerLimit"/>
+                    <result column="promotion_type" property="promotionType"/>
+                    <result column="brand_name" property="brandName"/>
+                    <result column="product_category_name" property="productCategoryName"/>
+            </resultMap>
+
+    <sql id="Base_Column_List">
+                 id,
+                     brand_id,
+                     product_category_id,
+                     feight_template_id,
+                     product_attribute_category_id,
+                     name,
+                     pic,
+                     product_sn,
+                     delete_status,
+                     publish_status,
+                     new_status,
+                     recommand_status,
+                     verify_status,
+                     sort,
+                     sale,
+                     price,
+                     promotion_price,
+                     gift_growth,
+                     gift_point,
+                     use_point_limit,
+                     sub_title,
+                     description,
+                     original_price,
+                     stock,
+                     low_stock,
+                     unit,
+                     weight,
+                     preview_status,
+                     service_ids,
+                     keywords,
+                     note,
+                     album_pics,
+                     detail_title,
+                     detail_desc,
+                     detail_html,
+                     detail_mobile_html,
+                     promotion_start_time,
+                     promotion_end_time,
+                     promotion_per_limit,
+                     promotion_type,
+                     brand_name,
+                    product_category_name         </sql>
+    <!-- 根据Id查询-->
+    <select id="selectByPrimaryKey" resultMap="pmsProductMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product
+        where id = #{id}
+    </select>
+
+    <!-- 根据Id删除-->
+    <delete id="delete" parameterType="java.lang.Long">
+		delete from pms_product
+		where id = #{id}
+	</delete>
+
+    <!-- 插入数据-->
+    <insert id="insertSelective" parameterType="com.pine.mall.core.pms.entity.PmsProduct"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into  pms_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                            <if test="id != null">  id,</if>
+                            <if test="brandId != null">  brand_id,</if>
+                            <if test="productCategoryId != null">  product_category_id,</if>
+                            <if test="feightTemplateId != null">  feight_template_id,</if>
+                            <if test="productAttributeCategoryId != null">  product_attribute_category_id,</if>
+                            <if test="name != null">  name,</if>
+                            <if test="pic != null">  pic,</if>
+                            <if test="productSn != null">  product_sn,</if>
+                            <if test="deleteStatus != null">  delete_status,</if>
+                            <if test="publishStatus != null">  publish_status,</if>
+                            <if test="newStatus != null">  new_status,</if>
+                            <if test="recommandStatus != null">  recommand_status,</if>
+                            <if test="verifyStatus != null">  verify_status,</if>
+                            <if test="sort != null">  sort,</if>
+                            <if test="sale != null">  sale,</if>
+                            <if test="price != null">  price,</if>
+                            <if test="promotionPrice != null">  promotion_price,</if>
+                            <if test="giftGrowth != null">  gift_growth,</if>
+                            <if test="giftPoint != null">  gift_point,</if>
+                            <if test="usePointLimit != null">  use_point_limit,</if>
+                            <if test="subTitle != null">  sub_title,</if>
+                            <if test="description != null">  description,</if>
+                            <if test="originalPrice != null">  original_price,</if>
+                            <if test="stock != null">  stock,</if>
+                            <if test="lowStock != null">  low_stock,</if>
+                            <if test="unit != null">  unit,</if>
+                            <if test="weight != null">  weight,</if>
+                            <if test="previewStatus != null">  preview_status,</if>
+                            <if test="serviceIds != null">  service_ids,</if>
+                            <if test="keywords != null">  keywords,</if>
+                            <if test="note != null">  note,</if>
+                            <if test="albumPics != null">  album_pics,</if>
+                            <if test="detailTitle != null">  detail_title,</if>
+                            <if test="detailDesc != null">  detail_desc,</if>
+                            <if test="detailHtml != null">  detail_html,</if>
+                            <if test="detailMobileHtml != null">  detail_mobile_html,</if>
+                            <if test="promotionStartTime != null">  promotion_start_time,</if>
+                            <if test="promotionEndTime != null">  promotion_end_time,</if>
+                            <if test="promotionPerLimit != null">  promotion_per_limit,</if>
+                            <if test="promotionType != null">  promotion_type,</if>
+                            <if test="brandName != null">  brand_name,</if>
+                            <if test="productCategoryName != null">  product_category_name,</if>
+                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                            <if test="id != null">#{id},</if>
+                            <if test="brandId != null">#{brandId},</if>
+                            <if test="productCategoryId != null">#{productCategoryId},</if>
+                            <if test="feightTemplateId != null">#{feightTemplateId},</if>
+                            <if test="productAttributeCategoryId != null">#{productAttributeCategoryId},</if>
+                            <if test="name != null">#{name},</if>
+                            <if test="pic != null">#{pic},</if>
+                            <if test="productSn != null">#{productSn},</if>
+                            <if test="deleteStatus != null">#{deleteStatus},</if>
+                            <if test="publishStatus != null">#{publishStatus},</if>
+                            <if test="newStatus != null">#{newStatus},</if>
+                            <if test="recommandStatus != null">#{recommandStatus},</if>
+                            <if test="verifyStatus != null">#{verifyStatus},</if>
+                            <if test="sort != null">#{sort},</if>
+                            <if test="sale != null">#{sale},</if>
+                            <if test="price != null">#{price},</if>
+                            <if test="promotionPrice != null">#{promotionPrice},</if>
+                            <if test="giftGrowth != null">#{giftGrowth},</if>
+                            <if test="giftPoint != null">#{giftPoint},</if>
+                            <if test="usePointLimit != null">#{usePointLimit},</if>
+                            <if test="subTitle != null">#{subTitle},</if>
+                            <if test="description != null">#{description},</if>
+                            <if test="originalPrice != null">#{originalPrice},</if>
+                            <if test="stock != null">#{stock},</if>
+                            <if test="lowStock != null">#{lowStock},</if>
+                            <if test="unit != null">#{unit},</if>
+                            <if test="weight != null">#{weight},</if>
+                            <if test="previewStatus != null">#{previewStatus},</if>
+                            <if test="serviceIds != null">#{serviceIds},</if>
+                            <if test="keywords != null">#{keywords},</if>
+                            <if test="note != null">#{note},</if>
+                            <if test="albumPics != null">#{albumPics},</if>
+                            <if test="detailTitle != null">#{detailTitle},</if>
+                            <if test="detailDesc != null">#{detailDesc},</if>
+                            <if test="detailHtml != null">#{detailHtml},</if>
+                            <if test="detailMobileHtml != null">#{detailMobileHtml},</if>
+                            <if test="promotionStartTime != null">#{promotionStartTime},</if>
+                            <if test="promotionEndTime != null">#{promotionEndTime},</if>
+                            <if test="promotionPerLimit != null">#{promotionPerLimit},</if>
+                            <if test="promotionType != null">#{promotionType},</if>
+                            <if test="brandName != null">#{brandName},</if>
+                            <if test="productCategoryName != null">#{productCategoryName},</if>
+                    </trim>
+    </insert>
+
+    <!-- 更新数据-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.pine.mall.core.pms.entity.PmsProduct">
+        update pms_product
+        <set>
+                            <if test="id != null">id = #{id},</if>
+                            <if test="brandId != null">brand_id = #{brandId},</if>
+                            <if test="productCategoryId != null">product_category_id = #{productCategoryId},</if>
+                            <if test="feightTemplateId != null">feight_template_id = #{feightTemplateId},</if>
+                            <if test="productAttributeCategoryId != null">product_attribute_category_id = #{productAttributeCategoryId},</if>
+                            <if test="name != null">name = #{name},</if>
+                            <if test="pic != null">pic = #{pic},</if>
+                            <if test="productSn != null">product_sn = #{productSn},</if>
+                            <if test="deleteStatus != null">delete_status = #{deleteStatus},</if>
+                            <if test="publishStatus != null">publish_status = #{publishStatus},</if>
+                            <if test="newStatus != null">new_status = #{newStatus},</if>
+                            <if test="recommandStatus != null">recommand_status = #{recommandStatus},</if>
+                            <if test="verifyStatus != null">verify_status = #{verifyStatus},</if>
+                            <if test="sort != null">sort = #{sort},</if>
+                            <if test="sale != null">sale = #{sale},</if>
+                            <if test="price != null">price = #{price},</if>
+                            <if test="promotionPrice != null">promotion_price = #{promotionPrice},</if>
+                            <if test="giftGrowth != null">gift_growth = #{giftGrowth},</if>
+                            <if test="giftPoint != null">gift_point = #{giftPoint},</if>
+                            <if test="usePointLimit != null">use_point_limit = #{usePointLimit},</if>
+                            <if test="subTitle != null">sub_title = #{subTitle},</if>
+                            <if test="description != null">description = #{description},</if>
+                            <if test="originalPrice != null">original_price = #{originalPrice},</if>
+                            <if test="stock != null">stock = #{stock},</if>
+                            <if test="lowStock != null">low_stock = #{lowStock},</if>
+                            <if test="unit != null">unit = #{unit},</if>
+                            <if test="weight != null">weight = #{weight},</if>
+                            <if test="previewStatus != null">preview_status = #{previewStatus},</if>
+                            <if test="serviceIds != null">service_ids = #{serviceIds},</if>
+                            <if test="keywords != null">keywords = #{keywords},</if>
+                            <if test="note != null">note = #{note},</if>
+                            <if test="albumPics != null">album_pics = #{albumPics},</if>
+                            <if test="detailTitle != null">detail_title = #{detailTitle},</if>
+                            <if test="detailDesc != null">detail_desc = #{detailDesc},</if>
+                            <if test="detailHtml != null">detail_html = #{detailHtml},</if>
+                            <if test="detailMobileHtml != null">detail_mobile_html = #{detailMobileHtml},</if>
+                            <if test="promotionStartTime != null">promotion_start_time = #{promotionStartTime},</if>
+                            <if test="promotionEndTime != null">promotion_end_time = #{promotionEndTime},</if>
+                            <if test="promotionPerLimit != null">promotion_per_limit = #{promotionPerLimit},</if>
+                            <if test="promotionType != null">promotion_type = #{promotionType},</if>
+                            <if test="brandName != null">brand_name = #{brandName},</if>
+                            <if test="productCategoryName != null">product_category_name = #{productCategoryName},</if>
+                    </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    
+    <!-- 全部查询 -->
+    <select id="queryAllPmsProduct" parameterType="java.util.Map"
+            resultMap="pmsProductMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product
+        <where>
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="brandId != null and !&quot;&quot;.equals(brandId)">
+                    and  brand_id = #{brandId}
+                </if>
+                            <if test="productCategoryId != null and !&quot;&quot;.equals(productCategoryId)">
+                    and  product_category_id = #{productCategoryId}
+                </if>
+                            <if test="feightTemplateId != null and !&quot;&quot;.equals(feightTemplateId)">
+                    and  feight_template_id = #{feightTemplateId}
+                </if>
+                            <if test="productAttributeCategoryId != null and !&quot;&quot;.equals(productAttributeCategoryId)">
+                    and  product_attribute_category_id = #{productAttributeCategoryId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="pic != null and !&quot;&quot;.equals(pic)">
+                    and  pic = #{pic}
+                </if>
+                            <if test="productSn != null and !&quot;&quot;.equals(productSn)">
+                    and  product_sn = #{productSn}
+                </if>
+                            <if test="deleteStatus != null and !&quot;&quot;.equals(deleteStatus)">
+                    and  delete_status = #{deleteStatus}
+                </if>
+                            <if test="publishStatus != null and !&quot;&quot;.equals(publishStatus)">
+                    and  publish_status = #{publishStatus}
+                </if>
+                            <if test="newStatus != null and !&quot;&quot;.equals(newStatus)">
+                    and  new_status = #{newStatus}
+                </if>
+                            <if test="recommandStatus != null and !&quot;&quot;.equals(recommandStatus)">
+                    and  recommand_status = #{recommandStatus}
+                </if>
+                            <if test="verifyStatus != null and !&quot;&quot;.equals(verifyStatus)">
+                    and  verify_status = #{verifyStatus}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="sale != null and !&quot;&quot;.equals(sale)">
+                    and  sale = #{sale}
+                </if>
+                            <if test="price != null and !&quot;&quot;.equals(price)">
+                    and  price = #{price}
+                </if>
+                            <if test="promotionPrice != null and !&quot;&quot;.equals(promotionPrice)">
+                    and  promotion_price = #{promotionPrice}
+                </if>
+                            <if test="giftGrowth != null and !&quot;&quot;.equals(giftGrowth)">
+                    and  gift_growth = #{giftGrowth}
+                </if>
+                            <if test="giftPoint != null and !&quot;&quot;.equals(giftPoint)">
+                    and  gift_point = #{giftPoint}
+                </if>
+                            <if test="usePointLimit != null and !&quot;&quot;.equals(usePointLimit)">
+                    and  use_point_limit = #{usePointLimit}
+                </if>
+                            <if test="subTitle != null and !&quot;&quot;.equals(subTitle)">
+                    and  sub_title = #{subTitle}
+                </if>
+                            <if test="description != null and !&quot;&quot;.equals(description)">
+                    and  description = #{description}
+                </if>
+                            <if test="originalPrice != null and !&quot;&quot;.equals(originalPrice)">
+                    and  original_price = #{originalPrice}
+                </if>
+                            <if test="stock != null and !&quot;&quot;.equals(stock)">
+                    and  stock = #{stock}
+                </if>
+                            <if test="lowStock != null and !&quot;&quot;.equals(lowStock)">
+                    and  low_stock = #{lowStock}
+                </if>
+                            <if test="unit != null and !&quot;&quot;.equals(unit)">
+                    and  unit = #{unit}
+                </if>
+                            <if test="weight != null and !&quot;&quot;.equals(weight)">
+                    and  weight = #{weight}
+                </if>
+                            <if test="previewStatus != null and !&quot;&quot;.equals(previewStatus)">
+                    and  preview_status = #{previewStatus}
+                </if>
+                            <if test="serviceIds != null and !&quot;&quot;.equals(serviceIds)">
+                    and  service_ids = #{serviceIds}
+                </if>
+                            <if test="keywords != null and !&quot;&quot;.equals(keywords)">
+                    and  keywords = #{keywords}
+                </if>
+                            <if test="note != null and !&quot;&quot;.equals(note)">
+                    and  note = #{note}
+                </if>
+                            <if test="albumPics != null and !&quot;&quot;.equals(albumPics)">
+                    and  album_pics = #{albumPics}
+                </if>
+                            <if test="detailTitle != null and !&quot;&quot;.equals(detailTitle)">
+                    and  detail_title = #{detailTitle}
+                </if>
+                            <if test="detailDesc != null and !&quot;&quot;.equals(detailDesc)">
+                    and  detail_desc = #{detailDesc}
+                </if>
+                            <if test="detailHtml != null and !&quot;&quot;.equals(detailHtml)">
+                    and  detail_html = #{detailHtml}
+                </if>
+                            <if test="detailMobileHtml != null and !&quot;&quot;.equals(detailMobileHtml)">
+                    and  detail_mobile_html = #{detailMobileHtml}
+                </if>
+                            <if test="promotionStartTime != null and !&quot;&quot;.equals(promotionStartTime)">
+                    and  promotion_start_time = #{promotionStartTime}
+                </if>
+                            <if test="promotionEndTime != null and !&quot;&quot;.equals(promotionEndTime)">
+                    and  promotion_end_time = #{promotionEndTime}
+                </if>
+                            <if test="promotionPerLimit != null and !&quot;&quot;.equals(promotionPerLimit)">
+                    and  promotion_per_limit = #{promotionPerLimit}
+                </if>
+                            <if test="promotionType != null and !&quot;&quot;.equals(promotionType)">
+                    and  promotion_type = #{promotionType}
+                </if>
+                            <if test="brandName != null and !&quot;&quot;.equals(brandName)">
+                    and  brand_name = #{brandName}
+                </if>
+                            <if test="productCategoryName != null and !&quot;&quot;.equals(productCategoryName)">
+                    and  product_category_name = #{productCategoryName}
+                </if>
+                    </where>
+        order by id desc
+    </select>
+
+    <!-- 根据条件查询一个 -->
+    <select id="queryPmsProduct" parameterType="java.util.Map"
+            resultMap="pmsProductMap">
+        select
+        <include refid="Base_Column_List"/>
+        from pms_product
+        <where>
+            and del_flag = 'N'
+                            <if test="id != null and !&quot;&quot;.equals(id)">
+                    and  id = #{id}
+                </if>
+                            <if test="brandId != null and !&quot;&quot;.equals(brandId)">
+                    and  brand_id = #{brandId}
+                </if>
+                            <if test="productCategoryId != null and !&quot;&quot;.equals(productCategoryId)">
+                    and  product_category_id = #{productCategoryId}
+                </if>
+                            <if test="feightTemplateId != null and !&quot;&quot;.equals(feightTemplateId)">
+                    and  feight_template_id = #{feightTemplateId}
+                </if>
+                            <if test="productAttributeCategoryId != null and !&quot;&quot;.equals(productAttributeCategoryId)">
+                    and  product_attribute_category_id = #{productAttributeCategoryId}
+                </if>
+                            <if test="name != null and !&quot;&quot;.equals(name)">
+                    and  name = #{name}
+                </if>
+                            <if test="pic != null and !&quot;&quot;.equals(pic)">
+                    and  pic = #{pic}
+                </if>
+                            <if test="productSn != null and !&quot;&quot;.equals(productSn)">
+                    and  product_sn = #{productSn}
+                </if>
+                            <if test="deleteStatus != null and !&quot;&quot;.equals(deleteStatus)">
+                    and  delete_status = #{deleteStatus}
+                </if>
+                            <if test="publishStatus != null and !&quot;&quot;.equals(publishStatus)">
+                    and  publish_status = #{publishStatus}
+                </if>
+                            <if test="newStatus != null and !&quot;&quot;.equals(newStatus)">
+                    and  new_status = #{newStatus}
+                </if>
+                            <if test="recommandStatus != null and !&quot;&quot;.equals(recommandStatus)">
+                    and  recommand_status = #{recommandStatus}
+                </if>
+                            <if test="verifyStatus != null and !&quot;&quot;.equals(verifyStatus)">
+                    and  verify_status = #{verifyStatus}
+                </if>
+                            <if test="sort != null and !&quot;&quot;.equals(sort)">
+                    and  sort = #{sort}
+                </if>
+                            <if test="sale != null and !&quot;&quot;.equals(sale)">
+                    and  sale = #{sale}
+                </if>
+                            <if test="price != null and !&quot;&quot;.equals(price)">
+                    and  price = #{price}
+                </if>
+                            <if test="promotionPrice != null and !&quot;&quot;.equals(promotionPrice)">
+                    and  promotion_price = #{promotionPrice}
+                </if>
+                            <if test="giftGrowth != null and !&quot;&quot;.equals(giftGrowth)">
+                    and  gift_growth = #{giftGrowth}
+                </if>
+                            <if test="giftPoint != null and !&quot;&quot;.equals(giftPoint)">
+                    and  gift_point = #{giftPoint}
+                </if>
+                            <if test="usePointLimit != null and !&quot;&quot;.equals(usePointLimit)">
+                    and  use_point_limit = #{usePointLimit}
+                </if>
+                            <if test="subTitle != null and !&quot;&quot;.equals(subTitle)">
+                    and  sub_title = #{subTitle}
+                </if>
+                            <if test="description != null and !&quot;&quot;.equals(description)">
+                    and  description = #{description}
+                </if>
+                            <if test="originalPrice != null and !&quot;&quot;.equals(originalPrice)">
+                    and  original_price = #{originalPrice}
+                </if>
+                            <if test="stock != null and !&quot;&quot;.equals(stock)">
+                    and  stock = #{stock}
+                </if>
+                            <if test="lowStock != null and !&quot;&quot;.equals(lowStock)">
+                    and  low_stock = #{lowStock}
+                </if>
+                            <if test="unit != null and !&quot;&quot;.equals(unit)">
+                    and  unit = #{unit}
+                </if>
+                            <if test="weight != null and !&quot;&quot;.equals(weight)">
+                    and  weight = #{weight}
+                </if>
+                            <if test="previewStatus != null and !&quot;&quot;.equals(previewStatus)">
+                    and  preview_status = #{previewStatus}
+                </if>
+                            <if test="serviceIds != null and !&quot;&quot;.equals(serviceIds)">
+                    and  service_ids = #{serviceIds}
+                </if>
+                            <if test="keywords != null and !&quot;&quot;.equals(keywords)">
+                    and  keywords = #{keywords}
+                </if>
+                            <if test="note != null and !&quot;&quot;.equals(note)">
+                    and  note = #{note}
+                </if>
+                            <if test="albumPics != null and !&quot;&quot;.equals(albumPics)">
+                    and  album_pics = #{albumPics}
+                </if>
+                            <if test="detailTitle != null and !&quot;&quot;.equals(detailTitle)">
+                    and  detail_title = #{detailTitle}
+                </if>
+                            <if test="detailDesc != null and !&quot;&quot;.equals(detailDesc)">
+                    and  detail_desc = #{detailDesc}
+                </if>
+                            <if test="detailHtml != null and !&quot;&quot;.equals(detailHtml)">
+                    and  detail_html = #{detailHtml}
+                </if>
+                            <if test="detailMobileHtml != null and !&quot;&quot;.equals(detailMobileHtml)">
+                    and  detail_mobile_html = #{detailMobileHtml}
+                </if>
+                            <if test="promotionStartTime != null and !&quot;&quot;.equals(promotionStartTime)">
+                    and  promotion_start_time = #{promotionStartTime}
+                </if>
+                            <if test="promotionEndTime != null and !&quot;&quot;.equals(promotionEndTime)">
+                    and  promotion_end_time = #{promotionEndTime}
+                </if>
+                            <if test="promotionPerLimit != null and !&quot;&quot;.equals(promotionPerLimit)">
+                    and  promotion_per_limit = #{promotionPerLimit}
+                </if>
+                            <if test="promotionType != null and !&quot;&quot;.equals(promotionType)">
+                    and  promotion_type = #{promotionType}
+                </if>
+                            <if test="brandName != null and !&quot;&quot;.equals(brandName)">
+                    and  brand_name = #{brandName}
+                </if>
+                            <if test="productCategoryName != null and !&quot;&quot;.equals(productCategoryName)">
+                    and  product_category_name = #{productCategoryName}
+                </if>
+                    </where>
+        LIMIT 1
+    </select>
+
+</mapper>
