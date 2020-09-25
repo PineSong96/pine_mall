@@ -1,12 +1,13 @@
-package com.pine.mall.product.service.impl;
+package com.pine.mall.admin.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.pine.mall.admin.service.PmsProductService;
 import com.pine.mall.core.pms.dao.PmsProductDao;
 import com.pine.mall.core.pms.entity.PmsProduct;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.github.pagehelper.PageHelper;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

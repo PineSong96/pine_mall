@@ -1,6 +1,7 @@
-package com.pine.mall.product.service;
+package com.pine.mall.admin.service;
 
 import com.pine.mall.core.pms.entity.PmsProduct;
+
 import java.util.List;
 
 /**
@@ -8,13 +9,13 @@ import java.util.List;
  * @motto My code
  * @author Pine
  * @email 771190883@qq.com
- * @date 2020-09-23 18:16:40
+ * @date 2020-09-25 22:27:57
  */
 public interface PmsProductService {
 
     List<PmsProduct> getPmsProductList(PmsProduct record);
 
-    List<PmsProduct> getPmsProductByPage(PmsProduct record, Integer pageSize, Integer pageNum);
+    List<PmsProduct> getPmsProductByPage(PmsProduct record,Integer pageSize, Integer pageNum);
 
     PmsProduct getPmsProductById(Long id);
 

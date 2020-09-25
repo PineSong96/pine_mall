@@ -14,7 +14,7 @@ import com.pine.mall.core.pms.entity.PmsProduct;
  */
 public interface PmsProductDao {
 
-    int delete(Long id);
+    int deleteById(Long id);
 
     int insertSelective(PmsProduct record);
 
