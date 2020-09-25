@@ -16,11 +16,14 @@
     <description>微服务商城</description>
     <packaging>pom</packaging>
     <modules>
-        <module>pine-auth</module>
+        <module>pine-generator</module>
         <module>pine-common</module>
+        <module>pine-gateway</module>
+        <module>pine-auth</module>
         <module>mall-core</module>
         <module>mall-member</module>
         <module>mall-admin</module>
+        <module>mall-product</module>
     </modules>
     <properties>
         <skipTests>true</skipTests>
