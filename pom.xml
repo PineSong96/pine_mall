@@ -20,6 +20,7 @@
         <module>pine-common</module>
         <module>mall-core</module>
         <module>mall-member</module>
+        <module>mall-admin</module>
     </modules>
     <properties>
         <skipTests>true</skipTests>
