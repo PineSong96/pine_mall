@@ -16,7 +16,6 @@
 |  mall-admin  |  后台管理|
 |  mall-product  |  商品服务|
 
-
 ## 实现的功能模块（持续更新）
 - [ ] 秒杀系统
 - [ ] 高并发订单业务处理
@@ -24,6 +23,7 @@
 - [ ] 自动化监控
 - [ ] ELK日志系统
 - [ ] 线上调优
+- [ ] 国际化
 
 ## 开发的业务模块（持续更新）
 - [ ] 商品服务
@@ -31,3 +31,8 @@
 # 我的公众号
 ![公众号](https://mmbiz.qpic.cn/mmbiz_jpg/LdDDm7ozIoYKX3Hyydw0U1KgFeYNkLTcGnrWySAXHNGYJV4uvxtI8N5m7o7TJq3CI7gL0Bib0lNiaKNU4Dia6s7RA/640?wx_fmt=jpeg "公众号")
 Pine的知识库  微信号 : 771190883
+
+##随心笔记（后期单独整理）
+1.基于oauth2.0 实现微信授权登录,短信验证码登录等思路
+在进入UserDetailsService.loadUserByUsername() 方法之前拦截短信 授权等信息 解析出用户名进行登录
+2.同一个认证中心 认证不同的登录体系 例如 用户登录  管理员登录  ，暂时想法通过用户名来区别  用SPI来实现
