@@ -44,13 +44,4 @@ public class PmsBrand implements Serializable {
     private String bigPic;
     @ApiModelProperty(value = "品牌故事", name = "brandStory")
     private String brandStory;
-
-    public static void main(String[] args) {
-        String n = "adsadasd";
-        char[] chars = n.toCharArray();
-        for (char c : chars) {
-
-            System.out.println(c);
-        }
-    }
 }
