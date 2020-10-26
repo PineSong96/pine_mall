@@ -24,6 +24,7 @@
         <module>mall-member</module>
         <module>mall-admin</module>
         <module>mall-product</module>
+        <module>mall-order</module>
     </modules>
     <properties>
         <skipTests>true</skipTests>
